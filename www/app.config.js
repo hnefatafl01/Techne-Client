@@ -32,7 +32,7 @@
   .state('tab.goal-detail', {
     url: '/goal/:goalId',
     views: {
-      'tab-goal-detail': {
+      'tab-goals': {
         templateUrl: 'templates/goal-detail.html',
         controller: 'GoalDetailCtrl'
       }
