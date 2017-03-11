@@ -1,0 +1,36 @@
+<ion-view view-title="New Goal" ng-controller=" GoalDetailCtrl as $ctrl">
+  <ion-content class="padding">
+    <h2>Goals</h2>
+    <div class="list">
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Exercise
+        </div>
+        <select>
+          <option>Pullups</option>
+          <option selected>Bench Press</option>
+        </select>
+      </label>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Goal Reps
+        </div>
+        <select>
+          <option>10</option>
+          <option selected>5</option>
+        </select>
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Goal Repetitions</span>
+        <input type="number">
+      </label>
+
+      <label class="item item-input">Goal Finish Date</label>
+      <input type="date">
+
+    </div>
+  </ion-content>
+</ion-view>

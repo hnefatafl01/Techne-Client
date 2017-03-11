@@ -3,7 +3,6 @@
 
   angular.module("app")
     .config(config);
-
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -11,7 +10,6 @@
 
   function config($stateProvider, $urlRouterProvider) {
   $stateProvider
-
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -19,17 +17,28 @@
     templateUrl: 'templates/tabs.html'
   })
 
-  // Each tab has its own nav history stack:
+  //Goals//
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.goals', {
+    url: '/goal',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-goals': {
+        templateUrl: 'templates/tab-goal.html',
+        controller: 'GoalCtrl'
       }
     }
   })
+
+  .state('tab.goal-detail', {
+    url: '/goal/:goalId',
+    views: {
+      'tab-goal-detail': {
+        templateUrl: 'templates/goal-detail.html',
+        controller: 'GoalDetailCtrl'
+      }
+    }
+  })
+  //Journal//
 
   .state('tab.chats', {
       url: '/chats',
@@ -50,6 +59,8 @@
       }
     })
 
+  //Account
+
   .state('tab.account', {
     url: '/account',
     views: {
@@ -61,7 +72,7 @@
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/goal');
   };
 
 }());

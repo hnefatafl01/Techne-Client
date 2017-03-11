@@ -1,33 +1,98 @@
-angular.module('app.controllers', [])
+(function() {
+  'use strict';
 
-.controller('DashCtrl', function(){
-  const vm = this;
-})
+  angular.module('app.controllers', [])
 
-.controller('ChatsCtrl', function(Chats) {
-  const vm = this;
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //.on('$ionicView.enter', function(e) {
-  //});
+  .controller('GoalCtrl', function(){
+    const vm = this;
+    // fake data
+    vm.goals = ["30 pullups 0lbs", "Bench Press 10x225lbs"];
+    // vm.options = {};
+    // vm.data = {};
+    vm.options = {
+      chart: {
+        type: 'pieChart',
+        height: 500,
+        x: function(d){return d.key;},
+        y: function(d){return d.y;},
+        showLabels: true,
+        duration: 500,
+        labelThreshold: 0.01,
+        labelSunbeamLayout: true,
+        legend: {
+          margin: {
+            top: 5,
+            right: 35,
+            bottom: 5,
+            left: 0
+          }
+        }
+      }
+    };
 
-  vm.chats = Chats.all();
-  vm.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
+    vm.data = [
+      {
+        key: "One",
+        y: 5
+      },
+      {
+        key: "Two",
+        y: 2
+      },
+      {
+        key: "Three",
+        y: 9
+      },
+      {
+        key: "Four",
+        y: 7
+      },
+      {
+        key: "Five",
+        y: 4
+      },
+      {
+        key: "Six",
+        y: 3
+      },
+      {
+        key: "Seven",
+        y: .5
+      }
+    ];
+  })
 
-.controller('ChatDetailCtrl', function($stateParams, Chats) {
-  const vm = this;
-  vm.chat = Chats.get($stateParams.chatId);
-})
+  .controller('GoalDetailCtrl', function(){
+    const vm = this;
+  })
 
-.controller('AccountCtrl', function() {
-  const vm = this;
-  vm.settings = {
-    enableFriends: true
-  };
-});
+  .controller('ChatsCtrl', function(Chats) {
+    const vm = this;
+    // With the new view caching in Ionic, Controllers are only called
+    // when they are recreated or on app start, instead of every page change.
+    // To listen for when this page is active (for example, to refresh data),
+    // listen for the $ionicView.enter event:
+    //
+    //.on('$ionicView.enter', function(e) {
+    //});
+
+    vm.chats = Chats.all();
+    vm.remove = function(chat) {
+      Chats.remove(chat);
+    };
+  })
+
+  .controller('ChatDetailCtrl', function($stateParams, Chats) {
+    const vm = this;
+    vm.chat = Chats.get($stateParams.chatId);
+  })
+
+  .controller('AccountCtrl', function() {
+    const vm = this;
+    vm.settings = {
+      enableFriends: true
+    };
+  });
+
+
+}());

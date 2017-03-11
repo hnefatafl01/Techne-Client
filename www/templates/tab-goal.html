@@ -1,0 +1,30 @@
+<ion-view view-title="Goals" ng-controller=" GoalCtrl as $ctrl">
+  <ion-content class="padding">
+
+    <div class="list card">
+
+      <div class="item item-avatar">
+        <!-- <img src="avatar.jpg"> -->
+        <h2>Current Goal</h2>
+        <p>current goal description</p>
+      </div>
+
+      <!-- <div class="item item-image"> -->
+        <nvd3 options="$ctrl.options" data="$ctrl.data"></nvd3>
+      <!-- </div> -->
+    </div>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="goal in $ctrl.goals" type="item-text-wrap" href="#/tab/goals/{{goal.id}}">
+        <!-- <img ng-src="{goal.chart}}"> -->
+        <!-- <h2>{{goal.name}}</h2> -->
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="$ctrl.remove(goal)">
+
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+
+    <button class="button button-full button-positive">Add New Goal</button>
+  </ion-content>
+</ion-view>
