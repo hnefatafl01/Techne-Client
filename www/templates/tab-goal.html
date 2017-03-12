@@ -18,14 +18,17 @@
 
     <ion-list>
       <ion-item
-        class="item-remove-animate item-avatar"
+        class="item-remove-animate item-avatar item-icon-left"
         type="item-text-wrap"
-        ng-repeat="goal in $ctrl.goals | orderBy: $ctrl.goals "
-        href="#/tab/goals/{{goal.id}}"
-        >
-        <!-- <img ng-src="{goal.chart}}"> -->
-        <h2>{{goal.exercise_name}} <span>finish by: {{goal.finish_date}}</span></h2>
-        <p>{{goal.reps}} x {{goal.load}}lbs</p>
+        ng-repeat="goal in $ctrl.goals | orderBy: $ctrl.goals">
+          <a id="goalStatus"
+             class="button button-icon icon ion-ios-pulse"
+             ng-click="$ctrl.displayGoalProgress()"
+             ng-mouseover="$ctrl.styleStatus()"></a>
+
+          <h2>{{goal.exercise_name}} <span>finish by: {{goal.finish_date}}</span></h2>
+          <p>{{goal.reps}} x {{goal.load}}lbs</p>
+
       </ion-item>
     </ion-list>
 

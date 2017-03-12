@@ -2,3 +2,7 @@
 h2 > span {
   font-size: .75em;
 }
+
+#goalStatus {
+  color: #9F86FF;
+}

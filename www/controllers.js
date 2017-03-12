@@ -19,8 +19,20 @@
       $state.go('tab.goal-detail');
     }
 
-    vm.viewGoal
+    vm.displayGoalProgress = function() {
+      console.log("show me this goals status");
 
+    }
+
+    vm.styleStatus = function() {
+      console.log('removeClass');
+
+      //fix hover 
+      angular.element( document.querySelector( '#goalStatus' ) ).removeClass("ion-ios-pulse");
+      var myEl = angular.element( document.querySelector( '#goalStatus' ) )
+
+      myEl.addClass("ion-ios-pulse-strong");
+    }
 
     // vm.options = {};
     // vm.data = {};
