@@ -3,20 +3,25 @@
 
   angular.module('app.controllers', [])
 
-  .controller('GoalCtrl', function($state){
+  .controller('GoalCtrl', function($state, GoalService){
     const vm = this;
     // fake data
 
     vm.$onInit = function() {
-      console.log("hello goal");
-
+      console.log("goal ctrl onInit");
+      GoalService.getGoals()
+        .then(function(result){
+          vm.goals = result.goals;
+        })
     }
 
     vm.addGoal = function() {
       $state.go('tab.goal-detail');
     }
 
-    vm.goals = ["30 pullups 0lbs", "Bench Press 10x225lbs"];
+    vm.viewGoal
+
+
     // vm.options = {};
     // vm.data = {};
     // vm.options = {
@@ -72,7 +77,7 @@
     // ];
   })
 
-  .controller('GoalDetailCtrl', function($state){
+  .controller('GoalDetailCtrl', function($state, GoalService){
     const vm = this;
     vm.createGoal = function() {
       console.log(vm.goal);

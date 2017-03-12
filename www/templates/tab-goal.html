@@ -14,17 +14,20 @@
       <!-- </div> -->
     </div>
 
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="goal in $ctrl.goals" type="item-text-wrap" href="#/tab/goals/{{goal.id}}">
-        <!-- <img ng-src="{goal.chart}}"> -->
-        <!-- <h2>{{goal.name}}</h2> -->
-        <i class="icon ion-chevron-right icon-accessory"></i>
-        <ion-option-button class="button-assertive" ng-click="$ctrl.remove(goal)">
+    <button class="button button-full button-positive" ng-click="$ctrl.addGoal()">Add New Goal</button>
 
-        </ion-option-button>
+    <ion-list>
+      <ion-item
+        class="item-remove-animate item-avatar"
+        type="item-text-wrap"
+        ng-repeat="goal in $ctrl.goals | orderBy: $ctrl.goals "
+        href="#/tab/goals/{{goal.id}}"
+        >
+        <!-- <img ng-src="{goal.chart}}"> -->
+        <h2>{{goal.exercise_name}} <span>finish by: {{goal.finish_date}}</span></h2>
+        <p>{{goal.reps}} x {{goal.load}}lbs</p>
       </ion-item>
     </ion-list>
 
-    <button class="button button-full button-positive" ng-click="$ctrl.addGoal()">Add New Goal</button>
   </ion-content>
 </ion-view>
