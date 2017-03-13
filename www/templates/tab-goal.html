@@ -9,9 +9,9 @@
         <p>current goal description</p>
       </div>
 
-      <!-- <div class="item item-image"> -->
-        <!-- <nvd3 options="options" data="data" config="{deepWatchDataDepth: 0}"></nvd3> -->
-      <!-- </div> -->
+      <div class="item item-image">
+        <nvd3 options="$ctrl.options" data="$ctrl.data" config="{deepWatchDataDepth: 0}"></nvd3>
+      </div>
     </div>
 
     <button class="button button-full button-positive" ng-click="$ctrl.addGoal()">Add New Goal</button>
