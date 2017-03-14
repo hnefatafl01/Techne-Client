@@ -8,7 +8,8 @@
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
 
-  function config($stateProvider, $urlRouterProvider) {
+  function config($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.views.maxCache(0);
   $stateProvider
   // setup an abstract state for the tabs directive
     .state('tab', {

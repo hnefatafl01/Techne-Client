@@ -45,12 +45,9 @@
       }
       console.log(vm.newGoal);
       GoalService.postGoal(vm.newGoal)
-        // .then(function(result){
-        //   vm.newGoal = result.data;
-          // console.log("added ", result);
-        // })
-
-      $state.go('tab.goals');
+      .then(function(){
+        $state.transitionTo('tab.goals', null, {reload: true, notify:true});
+      })
     }
   })
 
