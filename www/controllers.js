@@ -12,8 +12,8 @@
         .then(function(result){
           vm.goals = result.goals;
         })
-        vm.options = ChartFactory.options;
-        vm.data = ChartFactory.data;
+      vm.options = ChartFactory.options;
+      vm.data = ChartFactory.data;
     }
 
     vm.addGoal = function() {
@@ -32,72 +32,24 @@
       //
       // myEl.addClass("ion-ios-pulse-strong");
     }
-
-
-
-    // vm.options = {};
-    // vm.data = {};
-    // vm.options = {
-    //   chart: {
-    //     type: 'pieChart',
-    //     height: 250,
-    //     x: function(d){return d.key;},
-    //     y: function(d){return d.y;},
-    //     showLabels: true,
-    //     duration: 500,
-    //     labelThreshold: 0.01,
-    //     labelSunbeamLayout: true,
-    //     legend: {
-    //       margin: {
-    //         top: 5,
-    //         right: 35,
-    //         bottom: 5,
-    //         left: 0
-    //       }
-    //     }
-    //   }
-    // };
-    //
-    //
-    // vm.data = [
-    //   {
-    //     key: "One",
-    //     y: 5
-    //   },
-    //   {
-    //     key: "Two",
-    //     y: 2
-    //   },
-    //   {
-    //     key: "Three",
-    //     y: 9
-    //   },
-    //   {
-    //     key: "Four",
-    //     y: 7
-    //   },
-    //   {
-    //     key: "Five",
-    //     y: 4
-    //   },
-    //   {
-    //     key: "Six",
-    //     y: 3
-    //   },
-    //   {
-    //     key: "Seven",
-    //     y: .5
-    //   }
-    // ];
-
-
-
   })
 
   .controller('GoalDetailCtrl', function($state, GoalService){
     const vm = this;
     vm.createGoal = function() {
-      console.log(vm.goal);
+      vm.newGoal = {
+        exercise_name: vm.goal.exercise,
+        reps: vm.goal.repetitions,
+        load: vm.goal.load,
+        finish_date: vm.goal.goalFinishDate
+      }
+      console.log(vm.newGoal);
+      GoalService.postGoal(vm.newGoal)
+        // .then(function(result){
+        //   vm.newGoal = result.data;
+          // console.log("added ", result);
+        // })
+
       $state.go('tab.goals');
     }
   })

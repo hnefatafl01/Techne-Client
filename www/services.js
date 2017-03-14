@@ -5,15 +5,31 @@
 
   angular.module('app.services', [])
     .service('GoalService', service)
+    .service('ExerciseService', exerciseService)
     .factory('ChartFactory', chartFactory)
 
     function service($http) {
       // console.log('services module');
       this.getGoals = function() {
         return $http.get(`${SERVER_URL}/goals`).then(function(result) {
-          console.log('get goals');
+          // console.log('get goals');
+          // console.log(result.data);
+          return result.data;
+        })
+      }
+
+      this.postGoal = function(newGoal) {
+        return $http.post(`${SERVER_URL}/goals`, newGoal).then(function(result) {
           console.log(result.data);
           return result.data;
+        })
+      }
+    }
+
+    function exerciseService($http) {
+      this.getExercises = function() {
+        return $http.get(`${SERVER_URL}/exercises`).then(function(result) {
+          console.log('get exercises');
         })
       }
     }
@@ -22,10 +38,10 @@
       var options = {
         chart: {
           type: 'lineChart',
-          height: 450,
+          height: 350,
           margin : {
-              top: 20,
-              right: 20,
+              top: 10,
+              right: 10,
               bottom: 40,
               left: 55
           },
@@ -39,12 +55,12 @@
               tooltipHide: function(e){ console.log("tooltipHide"); }
           },
           xAxis: {
-              axisLabel: 'Time (ms)'
+              axisLabel: 'day'
           },
           yAxis: {
-              axisLabel: 'Voltage (v)',
+              axisLabel: 'reps',
               tickFormat: function(d){
-                  return d3.format('.02f')(d);
+                  return d3.format('5')(d);
               },
               axisLabelDistance: -10
           },
@@ -54,63 +70,59 @@
         },
         title: {
             enable: true,
-            text: 'Title for Line Chart'
+            text: ''
         },
         subtitle: {
-            enable: true,
-            text: 'Subtitle for simple line chart. Lorem ipsum dolor sit amet, at eam blandit sadipscing, vim adhuc sanctus disputando ex, cu usu affert alienum urbanitas.',
+            enable: false,
+            text: '',
             css: {
                 'text-align': 'center',
                 'margin': '10px 13px 0px 7px'
             }
-        },
-        caption: {
-            enable: true,
-            html: '<b>Figure 1.</b> Lorem ipsum dolor sit amet, at eam blandit sadipscing, <span style="text-decoration: underline;">vim adhuc sanctus disputando ex</span>, cu usu affert alienum urbanitas. <i>Cum in purto erat, mea ne nominavi persecuti reformidans.</i> Docendi blandit abhorreant ea has, minim tantas alterum pro eu. <span style="color: darkred;">Exerci graeci ad vix, elit tacimates ea duo</span>. Id mel eruditi fuisset. Stet vidit patrioque in pro, eum ex veri verterem      abhorreant, id unum oportere intellegam nec<sup>[1, <a href="https://github.com/krispo/angular-nvd3" target="_blank">2</a>, 3]</sup>.',
-            css: {
-                'text-align': 'justify',
-                'margin': '10px 13px 0px 7px'
-            }
-          }
+        }
+        // ,
+        // caption: {
+        //     enable: true,
+        //     html: '<b>Figure 1.</b> Lorem ipsum dolor sit amet, at eam blandit sadipscing, <span style="text-decoration: underline;">vim adhuc sanctus disputando ex</span>, cu usu affert alienum urbanitas. <i>Cum in purto erat, mea ne nominavi persecuti reformidans.</i> Docendi blandit abhorreant ea has, minim tantas alterum pro eu. <span style="color: darkred;">Exerci graeci ad vix, elit tacimates ea duo</span>. Id mel eruditi fuisset. Stet vidit patrioque in pro, eum ex veri verterem      abhorreant, id unum oportere intellegam nec<sup>[1, <a href="https://github.com/krispo/angular-nvd3" target="_blank">2</a>, 3]</sup>.',
+        //     css: {
+        //         'text-align': 'justify',
+        //         'margin': '10px 13px 0px 7px'
+        //     }
+        //   }
         };
 
-      var data = sinAndCos();
+      var data = goalData();
 
       var factory = {
         options: options,
         data: data
       }
-      console.log(factory.options);
-      console.log(factory.data);
       return factory;
 
      /*Random Data Generator */
-      function sinAndCos() {
-        var sin = [],sin2 = [],
-            cos = [];
+      function goalData() {
+        var loadData = [];
+        var repData = [];
 
         //Data is represented as an array of {x,y} pairs.
-        for (var i = 0; i < 100; i++) {
-          sin.push({x: i, y: Math.sin(i/10)});
-          sin2.push({x: i, y: i % 10 == 5 ? null : Math.sin(i/10) *0.25 + 0.5});
-          cos.push({x: i, y: .5 * Math.cos(i/10+ 2) + Math.random() / 10});
+        for (var i = 0; i < 30; i++) {
+          loadData.push({x: i, y: i });
+          repData.push({x: i, y: i });
         }
 
         //Line chart data should be sent as an array of series objects.
         return [{
-          values: sin,      //values - represents the array of {x,y} data points
-          key: 'Sine Wave', //key  - the name of the series.
-          color: '#ff7f0e'  //color - optional: choose your own line color.
-        },{
-          values: cos,
-          key: 'Cosine Wave',
-          color: '#2ca02c'
-        },{
-          values: sin2,
-          key: 'Another sine wave',
-          color: '#7777ff',
-          area: true      //area - set to true if you want this line to turn into a filled area chart.
-        }];
+            values: loadData,      //values - represents the array of {x,y} data points
+            key: 'exercise load', //key  - the name of the series.
+            color: '#ff7f0e',  //color - optional: choose your own line color.
+            area: false
+          },{
+            values: repData,      //values - represents the array of {x,y} data points
+            key: 'exercise reps', //key  - the name of the series.
+            color: 'blue',  //color - optional: choose your own line color.
+            area: false
+          }
+        ];
       };
     }
 
