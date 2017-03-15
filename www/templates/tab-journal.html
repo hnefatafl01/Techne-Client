@@ -1,0 +1,26 @@
+<ion-view view-title="Journals" ng-controller="JournalCtrl as $ctrl">
+  <ion-content>
+    <ion-button
+        class="button button-full button-balanced"
+        ng-click="$ctrl.newTrainingLog()">
+      New Training Log
+    </ion-button>
+
+      <!-- ng-if="$ctrl.newTrainingLog === false" -->
+    <ion-list >
+      <ion-item
+        class="item-remove-animate item-avatar item-icon-right"
+        ng-repeat="journal in $ctrl.journals"
+        type="item-text-wrap"
+        ui-sref="tab.journal-detail"
+        >
+        <!-- ng-href="#/tab/journals/{{journal.id}}" -->
+        <!-- <img ng-src="{{chat.face}}"> -->
+        <h2>{{journal.date}}</h2>
+        <p ng-repeat="exercise in journal.exercises">{{exercise.name}}</p>
+        <!-- <p>{{journal.lastText}}</p> -->
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -3,7 +3,7 @@
 
   angular.module('app.controllers', ['nvd3'])
 
-  .controller('GoalCtrl', function($state, GoalService, ChartFactory){
+  .controller('GoalCtrl', function($state, GoalService, ChartFactory, JournalService){
     const vm = this;
 
     vm.$onInit = function() {
@@ -43,15 +43,15 @@
         load: vm.goal.load,
         finish_date: vm.goal.goalFinishDate
       }
-      console.log(vm.newGoal);
       GoalService.postGoal(vm.newGoal)
       .then(function(){
+        // $state.go('tab.goals');
         $state.transitionTo('tab.goals', null, {reload: true, notify:true});
       })
     }
   })
 
-  .controller('ChatsCtrl', function(Chats) {
+  .controller('JournalCtrl', function($state) {
     const vm = this;
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -60,16 +60,64 @@
     //
     //.on('$ionicView.enter', function(e) {
     //});
+    vm.$onInit = function() {
+      // JournalService.getJournals();
+      vm.journals = [{
+        id:1,
+        date: '03/23/2017',
+        exercises: [{
+          name: 'bench',
+          sets: 1,
+          reps: 25,
+          load: 115,
+          isGoal: true
+        },{
+          name: 'row',
+          sets: 1,
+          reps: 25,
+          load: 95,
+          isGoal: true
+        }]
+      },{
+        id:2,
+        date: '03/25/2017',
+        exercises: [{
+          name: 'back squat',
+          sets: 1,
+          reps: 25,
+          load: 135,
+          isGoal: true
+        },{
+          name: 'power clean',
+          sets: 8,
+          reps: 2,
+          load: 185,
+          isGoal: true
+        }]
+      }]
+    }
 
-    vm.chats = Chats.all();
-    vm.remove = function(chat) {
-      Chats.remove(chat);
-    };
+    vm.createExercise = function(){
+      console.log('createExercise');
+    }
+    vm.newTrainingLog = function() {
+      console.log('new entry');
+      $state.go('tab.journal-detail')
+    }
+
+    // vm.jouranls = Journals.all();
+    // vm.remove = function(journal) {
+    //   Journals.remove(journal);
+    // };
   })
 
-  .controller('ChatDetailCtrl', function($stateParams, Chats) {
+  .controller('JournalDetailCtrl', function($stateParams) {
     const vm = this;
-    vm.chat = Chats.get($stateParams.chatId);
+    // vm.journal = Journals.get($stateParams.journalId);
+    vm.deleteExercise = function(){
+      console.log('delete this exercise');
+    }
+
   })
 
   .controller('AccountCtrl', function() {

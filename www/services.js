@@ -7,6 +7,7 @@
     .service('GoalService', service)
     .service('ExerciseService', exerciseService)
     .factory('ChartFactory', chartFactory)
+    .service('JournalService', journalService)
 
     function service($http) {
       // console.log('services module');
@@ -124,6 +125,13 @@
           }
         ];
       };
+    }
+
+    function journalService($http){
+      return $http.get(`${SERVER_URL}/journal`)
+        .then(function(result){
+          console.log('result.data');
+        })
     }
 
 }());

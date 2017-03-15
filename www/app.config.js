@@ -41,21 +41,21 @@
   })
   //Journal//
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.journal', {
+      url: '/journal',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-journal': {
+          templateUrl: 'templates/tab-journal.html',
+          controller: 'JournalCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.journal-detail', {
+      url: '/journal/:journalId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-journal': {
+          templateUrl: 'templates/journal-detail.html',
+          controller: 'JournalDetailCtrl'
         }
       }
     })

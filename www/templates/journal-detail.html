@@ -1,0 +1,59 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view
+  ng-controller="JournalDetailCtrl as $ctrl"
+  view-title="{{$ctrl.journal.date}}">
+  <ion-content class="padding">
+    <div class="list">
+      <!-- ng-if="$ctrl.newLog === true" -->
+      <!-- <h2>New Exercise</h2> -->
+      <form ng-submit="$ctrl.createExercise()">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Exercise Name
+          </div>
+          <select ng-model="$ctrl.exercise.name">
+            <option>Pullups</option>
+            <option selected>Bench Press</option>
+          </select>
+        </label>
+
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Goal Reps
+          </div>
+          <select ng-model="$ctrl.exercise.reps">
+            <option>10</option>
+            <option selected>5</option>
+          </select>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Goal Load</span>
+          <input ng-model="$ctrl.exercise.load" type="number" min="0" max="1000" step="5">
+        </label>
+
+        <div class="row">
+          <div class="col">
+            <button class="button button-full button-balanced">Add Exercise</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- <ion-list> -->
+      <ion-item
+        class="card item-remove-animate item-avatar item-icon-right"
+        type="item-text-wrap">
+        <!-- ng-repeat="exercise in journal.exercises" -->
+        <h2>{{exercise.name}}</h2>
+        <p>{{exercise.sets}} x {{exercise.reps}} x {{exercise.load}}lbs</p>
+        <a ng-click="$ctrl.deleteExercise()"><i class="icon ion-close-round assertive"></i></a>
+      </ion-item>
+    <!-- </ion-list> -->
+  </ion-content>
+</ion-view>
