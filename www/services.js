@@ -1,18 +1,23 @@
 (function() {
   'use strict';
+  // console.log(ApiEndpoint);
+  // const SERVER_URL = ApiEndpoint;
+  // const SERVER_URL = 'http://localhost:5000';
 
-  const SERVER_URL = 'http://localhost:5000';
+
 
   angular.module('app.services', [])
     .service('GoalService', service)
     .service('ExerciseService', exerciseService)
     .factory('ChartFactory', chartFactory)
-    .service('JournalService', journalService)
+    // .service('JournalService', journalService)
 
-    function service($http) {
+    function service($http, ApiEndpoint) {
+      const SERVER_URL = ApiEndpoint.url;
+      console.log(ApiEndpoint);
       // console.log('services module');
       this.getGoals = function() {
-        return $http.get(`${SERVER_URL}/goals`).then(function(result) {
+        return $http.get(SERVER_URL + '/goals').then(function(result) {
           // console.log('get goals');
           // console.log(result.data);
           return result.data;
@@ -29,9 +34,9 @@
 
     function exerciseService($http) {
       this.getExercises = function() {
-        return $http.get(`${SERVER_URL}/exercises`).then(function(result) {
+        // return $http.get(`${}/exercises`).then(function(result) {
           console.log('get exercises');
-        })
+        // })
       }
     }
 
@@ -128,10 +133,10 @@
     }
 
     function journalService($http){
-      return $http.get(`${SERVER_URL}/journal`)
-        .then(function(result){
-          console.log('result.data');
-        })
+      // return $http.get(`${SERVER_URL}/session`)
+      //   .then(function(result){
+      //     console.log('result.data');
+      //   })
     }
 
 }());

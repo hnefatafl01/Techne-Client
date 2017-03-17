@@ -3,7 +3,7 @@
 
   angular.module('app.controllers', ['nvd3'])
 
-  .controller('GoalCtrl', function($state, GoalService, ChartFactory, JournalService){
+  .controller('GoalCtrl', function($state, GoalService, ChartFactory){
     const vm = this;
 
     vm.$onInit = function() {
