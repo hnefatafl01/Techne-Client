@@ -16,10 +16,16 @@
           <div class="input-label">
             Exercise Name
           </div>
-          <select ng-model="$ctrl.exercise.name">
+          <input type="text" placeholder="Exercise Name" ng-model="$ctrl.exercise">
+          <!-- <select
+            ng-model="$ctrl.exercise"
+            ng-options="exercise as exercise.name for exercise in $ctrl.exercises track by exercise.id">
             <option>Pullups</option>
+            <option>Squats</option>
+            <option>Deadlifts</option>
+            <option>Lunges</option>
             <option selected>Bench Press</option>
-          </select>
+          </select> -->
         </label>
 
         <label class="item item-input item-select">
@@ -50,8 +56,8 @@
         class="card item-remove-animate item-avatar item-icon-right"
         type="item-text-wrap">
         <!-- ng-repeat="exercise in journal.exercises" -->
-        <h2>{{exercise.name}}</h2>
-        <p>{{exercise.sets}} x {{exercise.reps}} x {{exercise.load}}lbs</p>
+        <h2>{{$ctrl.exercise.name}}</h2>
+        <p>{{$ctrl.exercise.sets}} x {{$ctrl.exercise.reps}} x {{$ctrl.exercise.load}}lbs</p>
         <a ng-click="$ctrl.deleteExercise()"><i class="icon ion-close-round assertive"></i></a>
       </ion-item>
     <!-- </ion-list> -->

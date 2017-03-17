@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.controllers', ['nvd3'])
-
+  // TODO: inject me! journalService
   .controller('GoalCtrl', function($state, GoalService, ChartFactory){
     const vm = this;
 
@@ -51,7 +51,7 @@
     }
   })
 
-  .controller('JournalCtrl', function($state) {
+  .controller('JournalCtrl', function($state, JournalService) {
     const vm = this;
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -61,40 +61,11 @@
     //.on('$ionicView.enter', function(e) {
     //});
     vm.$onInit = function() {
-      // JournalService.getJournals();
-      vm.journals = [{
-        id:1,
-        date: '03/23/2017',
-        exercises: [{
-          name: 'bench',
-          sets: 1,
-          reps: 25,
-          load: 115,
-          isGoal: true
-        },{
-          name: 'row',
-          sets: 1,
-          reps: 25,
-          load: 95,
-          isGoal: true
-        }]
-      },{
-        id:2,
-        date: '03/25/2017',
-        exercises: [{
-          name: 'back squat',
-          sets: 1,
-          reps: 25,
-          load: 135,
-          isGoal: true
-        },{
-          name: 'power clean',
-          sets: 8,
-          reps: 2,
-          load: 185,
-          isGoal: true
-        }]
-      }]
+      JournalService.getSessions()
+        .then(function(result){
+          console.log(result.sessions);
+          vm.sessions = result.sessions;
+        })
     }
 
     vm.createExercise = function(){

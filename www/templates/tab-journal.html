@@ -9,15 +9,16 @@
     <ion-list >
       <ion-item
         class="item-remove-animate item-avatar item-icon-right"
-        ng-repeat="journal in $ctrl.journals"
+        ng-repeat="session in $ctrl.sessions track by $index"
         type="item-text-wrap"
-        ui-sref="tab.journal-detail"
+
+        ng-href="#/tab/sessions/{{session.id}}"
         >
-        <!-- ng-href="#/tab/journals/{{journal.id}}" -->
+<!-- ui-sref="tab.journal-detail" -->
         <!-- <img ng-src="{{chat.face}}"> -->
-        <h2>{{journal.date}}</h2>
-        <p ng-repeat="exercise in journal.exercises">{{exercise.name}}</p>
-        <!-- <p>{{journal.lastText}}</p> -->
+        <h2>{{session.date}}</h2>
+        <p ng-repeat="exercise in session.exercises">{{exercise.name}}</p>
+        <!-- <p>{{session.lastText}}</p> -->
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
