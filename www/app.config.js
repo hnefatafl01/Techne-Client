@@ -56,12 +56,12 @@
         'tab-session': {
           templateUrl: 'templates/session-detail.html',
           controller: 'SessionDetailCtrl'
-      },
-      resolve: {
-        sessionId: ['$stateParams', function($stateParams){
-            return $stateParams.sessionId;
-        }]
-      }
+        },
+        resolve: {
+          sessionId: ['$stateParams', function($stateParams){
+              return $stateParams.sessionId;
+          }]
+        }
       }
     })
 

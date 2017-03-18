@@ -64,13 +64,11 @@
       SessionService.getSessions()
         .then(function(result){
           vm.sessions = result.sessions;
-          console.log(vm.sessions);
+          // console.log(vm.sessions);
         })
     }
 
-    vm.createExercise = function(){
-      console.log('createExercise');
-    }
+
     vm.newTrainingLog = function() {
       console.log('new entry');
       // $state.go('tab.journal-detail')
@@ -82,11 +80,23 @@
     const vm = this;
 
     vm.$onInit = function() {
+      vm.tempExerciseArray = [];
       let sessionId = $stateParams.sessionId;
       SessionService.getSession(sessionId)
         .then(function(session) {
           vm.session = session.session;
+          // console.log(vm.session);
         })
+    }
+
+    vm.createExercise = function(){
+      vm.tempExerciseArray.push(vm.exercise)
+      // console.log(vm.exercise);
+      // console.log(vm.tempExerciseArray);
+      console.log(vm.session);
+      vm.session.exercises = vm.session.exercises.concat(vm.tempExerciseArray);
+      console.log(vm.session.exercises);
+      delete vm.exercise;
     }
 
     vm.deleteExercise = function(){

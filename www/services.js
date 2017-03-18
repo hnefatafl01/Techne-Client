@@ -20,7 +20,7 @@
       this.getSession = function(id) {
         return $http.get(`${SERVER_URL}/sessions/${id}`)
           .then(function(result){
-            return result.data
+            return result.data;
           })
       }
     }
