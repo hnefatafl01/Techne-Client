@@ -70,20 +70,22 @@
 
     vm.newTrainingLog = function() {
       console.log('new entry');
-      // $state.go('tab.journal-detail')
-      SessionService.newSession(vm.session)
+      vm.session = {};
+      vm.session.date = new Date();
+      let session = vm.session;
+      console.log('session create', session);
+      SessionService.newSession(session)
         .then(function(result){
           vm.session = result.session;
-          vm.session.date = new Date();
-          console.log('vmsession',vm.session);
+          console.log('vmsession', vm.session);
         })
-        .then(function(){
-          SessionService.getSessions()
-          .then(function(result){
-            vm.sessions = result.sessions;
-            console.log('vm.sessions',vm.sessions);
-          })
-        })
+        // .then(function(){
+        //   SessionService.getSessions()
+        //   .then(function(result){
+        //     vm.sessions = result.sessions;
+        //     console.log('vm.sessions',vm.sessions);
+        //   })
+        // })
 
 
     }

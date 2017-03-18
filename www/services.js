@@ -27,14 +27,15 @@
       this.updateSessionExercise = function(exercise) {
         // return $http.post(`${SERVER_URL}/sessions/`, exercise)
         //   .then(function(result) {
-            console.log('posting exercise');
-          // })
+        //     console.log('posting exercise');
+        //     console.log(result);
+        //   })
       }
 
       this.newSession = function(session) {
-        console.log('session',session);
         return $http.post(`${SERVER_URL}/sessions`, session)
           .then(function(result) {
+            console.log(result);
             return result.data;
           })
       }
@@ -53,7 +54,6 @@
 
       this.postGoal = function(newGoal) {
         return $http.post(`${SERVER_URL}/goals`, newGoal).then(function(result) {
-          console.log(result.data);
           return result.data;
         })
       }

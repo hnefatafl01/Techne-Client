@@ -26,7 +26,7 @@
              ng-click="$ctrl.displayGoalProgress()"
              ng-mouseover="$ctrl.styleStatus()"></a>
 
-          <h2>{{goal.exercise_name}} <span>finish by: {{goal.finish_date}}</span></h2>
+          <h2>{{goal.exercise_name}} <span>finish by: {{goal.finish_date | date: longDate}}</span></h2>
           <p>{{goal.reps}} x {{goal.load}}lbs</p>
 
       </ion-item>
