@@ -23,6 +23,21 @@
             return result.data;
           })
       }
+
+      this.updateSessionExercise = function(exercise) {
+        // return $http.post(`${SERVER_URL}/sessions/`, exercise)
+        //   .then(function(result) {
+            console.log('posting exercise');
+          // })
+      }
+
+      this.newSession = function(session) {
+        console.log('session',session);
+        return $http.post(`${SERVER_URL}/sessions`, session)
+          .then(function(result) {
+            return result.data;
+          })
+      }
     }
 
     function goalService($http, ApiEndpoint) {

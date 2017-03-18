@@ -17,7 +17,7 @@
 
         <!-- <img ng-src="{{chat.face}}"> -->
         <div ng-repeat="exercise in session.exercises">
-          <h2>{{session.date}}</h2>
+          <h2>{{session.date | date: longDate}}</h2>
           <p>{{exercise.name}}</p>
           <p>{{session.id}}</p>
         </div>

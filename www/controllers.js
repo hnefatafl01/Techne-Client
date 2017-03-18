@@ -68,10 +68,24 @@
         })
     }
 
-
     vm.newTrainingLog = function() {
       console.log('new entry');
       // $state.go('tab.journal-detail')
+      SessionService.newSession(vm.session)
+        .then(function(result){
+          vm.session = result.session;
+          vm.session.date = new Date();
+          console.log('vmsession',vm.session);
+        })
+        .then(function(){
+          SessionService.getSessions()
+          .then(function(result){
+            vm.sessions = result.sessions;
+            console.log('vm.sessions',vm.sessions);
+          })
+        })
+
+
     }
 
   })
@@ -91,12 +105,10 @@
 
     vm.createExercise = function(){
       vm.tempExerciseArray.push(vm.exercise)
-      // console.log(vm.exercise);
-      // console.log(vm.tempExerciseArray);
-      console.log(vm.session);
       vm.session.exercises = vm.session.exercises.concat(vm.tempExerciseArray);
-      console.log(vm.session.exercises);
       delete vm.exercise;
+      console.log('post/update');
+      // SessionService.updateSessionExercise(vm.session.exercises);
     }
 
     vm.deleteExercise = function(){
