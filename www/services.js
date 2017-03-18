@@ -2,13 +2,14 @@
   'use strict';
 
   angular.module('app.services', [])
-    .service('GoalService', service)
+    .service('GoalService', goalService)
     .service('ExerciseService', exerciseService)
     .factory('ChartFactory', chartFactory)
-    .service('JournalService', journalService)
+    .service('SessionService', sessionService)
 
-    function journalService($http, ApiEndpoint){
+    function sessionService($http, ApiEndpoint){
       let SERVER_URL = ApiEndpoint.url;
+
       this.getSessions = function() {
         return $http.get(`${SERVER_URL}/sessions`)
           .then(function(result){
@@ -16,9 +17,15 @@
           })
       }
 
+      this.getSession = function(id) {
+        return $http.get(`${SERVER_URL}/sessions/${id}`)
+          .then(function(result){
+            return result.data
+          })
+      }
     }
 
-    function service($http, ApiEndpoint) {
+    function goalService($http, ApiEndpoint) {
       let SERVER_URL = ApiEndpoint.url;
       // console.log('services module');
       this.getGoals = function() {

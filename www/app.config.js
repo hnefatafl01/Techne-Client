@@ -41,22 +41,27 @@
   })
   //Journal//
 
-  .state('tab.journal', {
-      url: '/journal',
+  .state('tab.session', {
+      url: '/sessions',
       views: {
-        'tab-journal': {
-          templateUrl: 'templates/tab-journal.html',
-          controller: 'JournalCtrl'
+        'tab-session': {
+          templateUrl: 'templates/tab-session.html',
+          controller: 'SessionCtrl'
         }
       }
     })
-    .state('tab.journal-detail', {
-      url: '/journal/:journalId',
+    .state('tab.session-detail', {
+      url: '/sessions/:sessionId',
       views: {
-        'tab-journal': {
-          templateUrl: 'templates/journal-detail.html',
-          controller: 'JournalDetailCtrl'
-        }
+        'tab-session': {
+          templateUrl: 'templates/session-detail.html',
+          controller: 'SessionDetailCtrl'
+      },
+      resolve: {
+        sessionId: ['$stateParams', function($stateParams){
+            return $stateParams.sessionId;
+        }]
+      }
       }
     })
 

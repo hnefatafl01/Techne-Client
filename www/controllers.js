@@ -51,7 +51,7 @@
     }
   })
 
-  .controller('JournalCtrl', function($state, JournalService) {
+  .controller('SessionCtrl', function($state, $stateParams, SessionService) {
     const vm = this;
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -61,10 +61,10 @@
     //.on('$ionicView.enter', function(e) {
     //});
     vm.$onInit = function() {
-      JournalService.getSessions()
+      SessionService.getSessions()
         .then(function(result){
-          console.log(result.sessions);
           vm.sessions = result.sessions;
+          console.log(vm.sessions);
         })
     }
 
@@ -73,18 +73,22 @@
     }
     vm.newTrainingLog = function() {
       console.log('new entry');
-      $state.go('tab.journal-detail')
+      // $state.go('tab.journal-detail')
     }
 
-    // vm.jouranls = Journals.all();
-    // vm.remove = function(journal) {
-    //   Journals.remove(journal);
-    // };
   })
 
-  .controller('JournalDetailCtrl', function($stateParams) {
+  .controller('SessionDetailCtrl', function(SessionService, $stateParams) {
     const vm = this;
-    // vm.journal = Journals.get($stateParams.journalId);
+
+    vm.$onInit = function() {
+      let sessionId = $stateParams.sessionId;
+      SessionService.getSession(sessionId)
+        .then(function(session) {
+          vm.session = session.session;
+        })
+    }
+
     vm.deleteExercise = function(){
       console.log('delete this exercise');
     }
@@ -97,6 +101,5 @@
       enableFriends: true
     };
   });
-
 
 }());

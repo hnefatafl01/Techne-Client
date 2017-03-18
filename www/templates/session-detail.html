@@ -1,12 +1,7 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
+
 <ion-view
-  ng-controller="JournalDetailCtrl as $ctrl"
-  view-title="{{$ctrl.journal.date}}">
+  ng-controller="SessionDetailCtrl as $ctrl"
+  view-title="{{$ctrl.session.date}}">
   <ion-content class="padding">
     <div class="list">
       <!-- ng-if="$ctrl.newLog === true" -->
@@ -16,7 +11,7 @@
           <div class="input-label">
             Exercise Name
           </div>
-          <input type="text" placeholder="Exercise Name" ng-model="$ctrl.exercise">
+          <input type="text" placeholder="Exercise Name" ng-model="$ctrl.session.exercise">
           <!-- <select
             ng-model="$ctrl.exercise"
             ng-options="exercise as exercise.name for exercise in $ctrl.exercises track by exercise.id">
