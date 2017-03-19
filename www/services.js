@@ -24,12 +24,14 @@
           })
       }
 
-      this.updateSessionExercise = function(exercise) {
-        // return $http.post(`${SERVER_URL}/sessions/`, exercise)
-        //   .then(function(result) {
-        //     console.log('posting exercise');
-        //     console.log(result);
-        //   })
+      this.updateSessionWithExercises = function(id, session) {
+        // console.log(session);
+        return $http.put(`${SERVER_URL}/sessions/edit/${id}`, session)
+          .then(function(result) {
+            console.log('posting session.exercises');
+            console.log(result);
+            return result.data;
+          })
       }
 
       this.newSession = function(session) {

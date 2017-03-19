@@ -42,12 +42,14 @@
           <input ng-model="$ctrl.exercise.load" type="number" min="0" max="1000" step="5">
         </label>
 
-        <button class="button button-full button-balanced">Submit</button>
+        <button class="button button-full button-balanced"><i class="ion-icon ion-plus"></i></button>
       </form>
     </div>
 
-    <button class="button button-full button-royal" ng-click="$ctrl.newLog = true">Add New Exercise</button>
-
+    <button
+      class="button button-full button-royal"
+      ng-click="$ctrl.newLog = true">Add New Exercise</button>
+    <button class="button button-full button-balanced" ng-click="$ctrl.submitSession()">Submit Session</button>
       <ion-item
         class="card item-remove-animate item-avatar item-icon-right"
         type="item-text-wrap"

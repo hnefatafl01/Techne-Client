@@ -72,6 +72,7 @@
       console.log('new entry');
       vm.session = {};
       vm.session.date = new Date();
+      // vm.session.duration = ;
       let session = vm.session;
       console.log('session create', session);
       SessionService.newSession(session)
@@ -107,10 +108,22 @@
 
     vm.createExercise = function(){
       vm.tempExerciseArray.push(vm.exercise)
-      vm.session.exercises = vm.session.exercises.concat(vm.tempExerciseArray);
+      console.log(vm.exercise);
       delete vm.exercise;
-      console.log('post/update');
-      // SessionService.updateSessionExercise(vm.session.exercises);
+      console.log(vm.tempExerciseArray);
+    }
+
+    vm.submitSession = function() {
+      vm.session.exercises = vm.tempExerciseArray;
+      let sessionId = $stateParams.sessionId;
+      console.log('id',sessionId);
+      console.log('submit session', vm.session);
+      let exercises = vm.session.exercises;
+      console.log('exercises', exercises);
+      SessionService.updateSessionWithExercises(sessionId, exercises)
+        .then(function(session){
+          console.log('promise',session);
+        })
     }
 
     vm.deleteExercise = function(){
