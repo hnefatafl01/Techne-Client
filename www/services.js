@@ -29,7 +29,7 @@
         return $http.put(`${SERVER_URL}/sessions/edit/${id}`, session)
           .then(function(result) {
             console.log('posting session.exercises');
-            console.log(result);
+            // console.log(result.data);
             return result.data;
           })
       }
@@ -37,7 +37,7 @@
       this.newSession = function(session) {
         return $http.post(`${SERVER_URL}/sessions`, session)
           .then(function(result) {
-            console.log(result);
+            console.log(result.data);
             return result.data;
           })
       }

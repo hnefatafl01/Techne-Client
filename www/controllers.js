@@ -7,7 +7,6 @@
     const vm = this;
 
     vm.$onInit = function() {
-      console.log("goal ctrl onInit");
       GoalService.getGoals()
         .then(function(result){
           vm.goals = result.goals;
@@ -78,7 +77,7 @@
       SessionService.newSession(session)
         .then(function(result){
           vm.session = result.session;
-          console.log('vmsession', vm.session);
+          // console.log('vmsession', vm.session);
         })
         // .then(function(){
         //   SessionService.getSessions()
@@ -108,22 +107,23 @@
 
     vm.createExercise = function(){
       vm.tempExerciseArray.push(vm.exercise)
-      console.log(vm.exercise);
+      // console.log(vm.exercise);
       delete vm.exercise;
-      console.log(vm.tempExerciseArray);
+      // console.log(vm.tempExerciseArray);
     }
 
     vm.submitSession = function() {
       vm.session.exercises = vm.tempExerciseArray;
       let sessionId = $stateParams.sessionId;
-      console.log('id',sessionId);
-      console.log('submit session', vm.session);
-      let exercises = vm.session.exercises;
-      console.log('exercises', exercises);
-      SessionService.updateSessionWithExercises(sessionId, exercises)
-        .then(function(session){
-          console.log('promise',session);
-        })
+      // console.log('id',sessionId);
+      // console.log('submit session', vm.session);
+      // let exercises = vm.session.exercises;
+      let session = vm.session;
+      console.log('session update', session);
+      SessionService.updateSessionWithExercises(sessionId, session)
+        // .then(function(session){
+        //   console.log('promise',session);
+        // })
     }
 
     vm.deleteExercise = function(){
