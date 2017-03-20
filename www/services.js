@@ -61,11 +61,17 @@
       }
     }
 
-    function exerciseService($http) {
-      SERVER_URL = ApiEndpoint.url;
+    function exerciseService($http, ApiEndpoint) {
+      let SERVER_URL = ApiEndpoint.url;
       this.getExercises = function() {
         return $http.get(`${SERVER_URL}/exercises`).then(function(result) {
           console.log('get exercises');
+        })
+      }
+      this.postExercise = function(exercise) {
+        return $http.post(`${SERVER_URL}/exercises`, exercise).then(function(result) {
+          console.log('post exercise', result);
+
         })
       }
     }
@@ -81,6 +87,9 @@
               bottom: 40,
               left: 55
           },
+          // css: {
+          //   'background-color':'#252830';
+          // },
           x: function(d){ return d.x; },
           y: function(d){ return d.y; },
           useInteractiveGuideline: true,

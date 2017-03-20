@@ -1,9 +1,48 @@
-.background-dark {background-color: rgb(25,28,30);}
-.background-light {background-color: rgb(43,48,57);}
-.blue-accent {background-color: rgb(19,97,C6);}
-.green-accent {background-color: rgb(1B,C9,8E);}
-.red-accent {background-color: rgb(E6,47,59);}
-.violet-accent {background-color: rgb(9F,86,FF);}
-.gold-accent {background-color: rgb(E4,D8,36);}
-.dark-accent {background-color: rgb(1E,21,27);}
-.primary-text {color: #FFFFFF;}
+.background-dark {
+  background-color: #252830;
+}
+
+.background-light {
+  /*background-color: #434857;*/
+  background-color: #252830;
+  border-color: #434857;
+  color: #434857;
+}
+
+.blue-accent {
+  background-color: #1997C6;
+  color: #FFFFFF;
+}
+
+.green-accent {
+  background-color: #1BC98E;
+}
+
+.red-accent {
+  background-color: #E64759;
+}
+
+.violet-accent {
+  background-color: #9F86FF;
+  color: #FFFFFF;
+}
+
+.gold-accent {
+  background-color: #E4D836;
+}
+
+.dark-accent {
+  background-color: #1E2127;
+  color: #1BC98E;
+  border-color: #1B1E19;
+}
+
+.primary-text {
+  color: #FFFFFF;
+}
+
+a.item-content {
+  background-color: #252830;
+  border-color: #434857;
+  color: #434857;
+}

@@ -1,5 +1,5 @@
 <ion-view view-title="Journals" ng-controller="SessionCtrl as $ctrl">
-  <ion-content>
+  <ion-content class="background-dark">
     <ion-button
         class="button button-full button-balanced"
         ng-click="$ctrl.newTrainingLog()">
@@ -8,7 +8,7 @@
       <!-- ng-if="$ctrl.newTrainingLog === false" -->
     <ion-list >
       <ion-item
-        class="item-remove-animate item-avatar item-icon-right"
+        class="item-remove-animate item-avatar item-icon-right "
         ng-repeat="session in $ctrl.sessions track by $index"
         type="item-text-wrap"
         ng-href="#/tab/sessions/{{session.id}}"
@@ -16,7 +16,7 @@
         <!-- ui-sref="tab.session-detail" -->
 
         <!-- <img ng-src="{{chat.face}}"> -->
-        <div ng-repeat="exercise in session.exercises">
+        <div ng-repeat="exercise in session.exercises" >
           <h2>{{session.date | date: longDate}}</h2>
           <!-- <p>{{exercise.name}}</p> -->
           <p>{{session.id}}</p>

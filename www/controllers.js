@@ -73,7 +73,7 @@
       vm.session.date = new Date();
       // vm.session.duration = ;
       let session = vm.session;
-      console.log('session create', session);
+      // console.log('session create', session);
       SessionService.newSession(session)
         .then(function(result){
           vm.session = result.session;
@@ -92,7 +92,7 @@
 
   })
 
-  .controller('SessionDetailCtrl', function(SessionService, $stateParams) {
+  .controller('SessionDetailCtrl', function(SessionService, $stateParams, ExerciseService) {
     const vm = this;
 
     vm.$onInit = function() {
@@ -108,6 +108,11 @@
     vm.createExercise = function(){
       vm.tempExerciseArray.push(vm.exercise)
       // console.log(vm.exercise);
+      // vm.exercise.session_id = vm.session.id; //assign ids somehow
+      ExerciseService.postExercise(vm.exercise)//assign ids somehow
+        .then(function(result){
+          console.log(result);
+        })
       delete vm.exercise;
       // console.log(vm.tempExerciseArray);
     }
@@ -120,7 +125,8 @@
       // let exercises = vm.session.exercises;
       let session = vm.session;
       console.log('session update', session);
-      SessionService.updateSessionWithExercises(sessionId, session)
+      // SessionService.updateSessionWithExercises(sessionId, session)
+
         // .then(function(session){
         //   console.log('promise',session);
         // })

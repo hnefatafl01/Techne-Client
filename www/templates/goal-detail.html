@@ -1,26 +1,28 @@
 <ion-view view-title="New Goal" ng-controller=" GoalDetailCtrl as $ctrl">
-  <ion-content class="padding">
+  <ion-content class="padding background-dark">
     <h2>Goals</h2>
-    <div class="list" >
+    <div class="list background-light" >
       <form ng-submit="$ctrl.createGoal()">
-        <label class="item item-input item-select">
-          <div class="input-label">
+        <label class="item item-input item-select background-light">
+          <div class="input-label background-light">
             Exercise
           </div>
-          <select ng-model="$ctrl.goal.exercise">
-            <option>Pullups</option>
+          <select ng-model="$ctrl.goal.exercise" >
+            <option class="background-light">Pullups</option>
             <option selected>Bench Press</option>
           </select>
         </label>
 
-        <label class="item item-input item-select">
-          <div class="input-label">
+        <label class="item item-input item-select background-light">
+          <div class="input-label background-light">
             Goal Reps
           </div>
-          <select ng-model="$ctrl.goal.repetitions">
+          <!-- <select ng-model="$ctrl.goal.repetitions" class="background-light">
             <option>10</option>
             <option selected>5</option>
-          </select>
+          </select> -->
+            <input ng-model="$ctrl.goal.repetitions" type="number" min="1"
+                   max="300" step="1" class="background-light">
         </label>
 
         <label class="item item-input">

@@ -1,5 +1,5 @@
 <ion-view view-title="Goals" ng-controller=" GoalCtrl as $ctrl">
-  <ion-content class="padding">
+  <ion-content class="padding background-dark">
 
     <div class="list card">
 
@@ -9,26 +9,25 @@
         <p>current goal description</p>
       </div> -->
 
-      <div class="item item-image">
+      <div class="item item-image background-dark">
         <nvd3 options="$ctrl.options" data="$ctrl.data" config="{deepWatchDataDepth: 0}"></nvd3>
       </div>
     </div>
 
-    <button class="button button-full button-positive" ng-click="$ctrl.addGoal()">Add New Goal</button>
+    <button class="button button-full blue-accent" ng-click="$ctrl.addGoal()">Add New Goal</button>
 
     <ion-list>
       <ion-item
-        class="item-remove-animate item-avatar item-icon-left"
+        class="item-remove-animate item-avatar item-icon-left background-light"
         type="item-text-wrap"
         ng-repeat="goal in $ctrl.goals | orderBy: $ctrl.goals">
           <a id="goalStatus"
-             class="button button-icon icon ion-ios-pulse"
+             class="button button-icon icon ion-ios-pulse-strong"
              ng-click="$ctrl.displayGoalProgress()"
              ng-mouseover="$ctrl.styleStatus()"></a>
 
-          <h2>{{goal.exercise_name}} <span>finish by: {{goal.finish_date | date: longDate}}</span></h2>
-          <p>{{goal.reps}} x {{goal.load}}lbs</p>
-
+          <h2 class="primary-text">{{goal.exercise_name}} <span>finish by: {{goal.finish_date | date: longDate}}</span></h2>
+          <p class="primary-text">{{goal.reps}} x {{goal.load}}lbs</p>
       </ion-item>
     </ion-list>
 
