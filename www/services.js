@@ -122,7 +122,8 @@
             text: '',
             css: {
                 'text-align': 'center',
-                'margin': '10px 13px 0px 7px'
+                'margin': '10px 13px 0px 7px',
+                'color': '#FFF'
             }
         }
         // ,

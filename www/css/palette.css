@@ -46,3 +46,11 @@ a.item-content {
   border-color: #434857;
   color: #434857;
 }
+
+svg text {
+    fill: #1997C6;
+}
+
+.nvd3.nv-line .nv-slice text {
+    fill: white !important;
+}
