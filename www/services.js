@@ -160,12 +160,12 @@
         return [{
             values: loadData,      //values - represents the array of {x,y} data points
             key: 'exercise load', //key  - the name of the series.
-            color: '#ff7f0e',  //color - optional: choose your own line color.
+            color: '#E64759',  //color - optional: choose your own line color.
             area: false
           },{
             values: repData,      //values - represents the array of {x,y} data points
             key: 'exercise reps', //key  - the name of the series.
-            color: 'blue',  //color - optional: choose your own line color.
+            color: '#9F86FF',  //color - optional: choose your own line color.
             area: false
           }
         ];
