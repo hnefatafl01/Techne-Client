@@ -18,6 +18,14 @@
   background-color: #1BC98E;
 }
 
+.back-button > i {
+  color: #1BC98E;
+}
+
+.back-button > span {
+  color: #1BC98E;
+}
+
 .red-accent {
   background-color: #E64759;
 }
@@ -32,7 +40,7 @@
 }
 
 .dark-accent {
-  background-color: #1E2127;
+  background-color: #1E2127;;
   color: #1BC98E;
   border-color: #1B1E19;
 }

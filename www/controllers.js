@@ -63,29 +63,16 @@
       SessionService.getSessions()
         .then(function(result){
           vm.sessions = result.sessions;
-          // console.log(vm.sessions);
         })
     }
 
     vm.newTrainingLog = function() {
-      console.log('new entry');
-      vm.session = {};
       vm.session.date = new Date();
-      // vm.session.duration = ;
       let session = vm.session;
-      // console.log('session create', session);
-      SessionService.newSession(session)
+      SessionService.postSession(session)
         .then(function(result){
-          vm.session = result.session;
-          // console.log('vmsession', vm.session);
+            return result.session;
         })
-        // .then(function(){
-        //   SessionService.getSessions()
-        //   .then(function(result){
-        //     vm.sessions = result.sessions;
-        //     console.log('vm.sessions',vm.sessions);
-        //   })
-        // })
     }
 
   })
@@ -97,7 +84,6 @@
       let sessionId = $stateParams.sessionId;
         SessionService.getSessionWithExercises(sessionId)
           .then((result) => {
-            console.log(result.session);
             vm.session = result.session;
             return vm.session;
           })
@@ -108,29 +94,23 @@
       let exercise = vm.session.exercise;
       SessionService.addExercisesToSession(sessionId, exercise)
         .then(function(result){
-          console.log(result);
           vm.session = result;
           return vm.session;
         })
         .then(()=>{
-          $state.transitionTo('tab.session-detail', null, {reload: true, notify:true});
+          $state.reload();
         })
       // delete vm.exercise;
     }
 
     vm.submitSession = function() {
-      // vm.session.exercises = vm.tempExerciseArray;
-      // let sessionId = $stateParams.sessionId;
-      // console.log('id',sessionId);
-      // console.log('submit session', vm.session);
-      // let exercises = vm.session.exercises;
-      // let session = vm.session;
-      // console.log('session update', session);
-      // SessionService.updateSessionWithExercises(sessionId, session)
-
-        // .then(function(session){
-        //   console.log('promise',session);
-        // })
+      let session = vm.session;
+      let id = session.id;
+      SessionService.updateSession(id, session)
+        .then(function(session){
+          vm.session = session;
+          $state.go('tab.session')
+        })
     }
 
     vm.deleteExercise = function(){

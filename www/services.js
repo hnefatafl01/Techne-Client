@@ -24,6 +24,13 @@
           })
       }
 
+      this.postSession = function(session) {
+        return $http.post(`${SERVER_URL}/sessions`, session)
+          .then(function(result){
+            return result.data;
+          })
+      }
+
       this.getSessionWithExercises = function(id) {
         return $http.get(`${SERVER_URL}/sessions/${id}/exercises`)
           .then(function(result) {
@@ -41,8 +48,8 @@
           })
       }
 
-      this.newSession = function(session) {
-        return $http.post(`${SERVER_URL}/sessions`, session)
+      this.updateSession = function(id, session) {
+        return $http.put(`${SERVER_URL}/sessions/edit/${id}`, session)
           .then(function(result) {
             console.log(result.data);
             return result.data;
