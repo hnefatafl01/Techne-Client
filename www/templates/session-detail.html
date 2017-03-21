@@ -11,35 +11,26 @@
           <div class="input-label">
             Exercise
           </div>
-          <input type="text" placeholder="Exercise Name" ng-model="$ctrl.exercise.name">
-          <!-- <select
-            ng-model="$ctrl.exercise.name"
-            ng-options="exercise as exercise.name for exercise in $ctrl.exercises track by exercise.id">
-            <option>Pullups</option>
-            <option>Squats</option>
-            <option>Deadlifts</option>
-            <option>Lunges</option>
-            <option selected>Bench Press</option>
-          </select> -->
+          <input type="text" placeholder="Exercise Name" ng-model="$ctrl.session.exercise.name">
         </label>
 
         <label class="item item-input">
           <div class="input-label">
             Sets
           </div>
-          <input ng-model="$ctrl.exercise.sets" type="number" name="" value="1" min="1" max="25">
+          <input ng-model="$ctrl.session.exercise.sets" type="number" name="" value="1" min="1" max="25">
         </label>
 
         <label class="item item-input">
           <div class="input-label">
             Reps
           </div>
-          <input ng-model="$ctrl.exercise.repetitions" type="number" name="" value="1" min="1" max="300">
+          <input ng-model="$ctrl.session.exercise.repetitions" type="number" name="" value="1" min="1" max="300">
         </label>
 
         <label class="item item-input">
           <span class="input-label">Load</span>
-          <input ng-model="$ctrl.exercise.load" type="number" min="0" max="1000" step="5">
+          <input ng-model="$ctrl.session.exercise.load" type="number" min="0" max="1000" step="5">
         </label>
 
         <button class="button button-full button-balanced"><i class="ion-icon ion-plus"></i></button>
@@ -48,8 +39,12 @@
 
     <button
       class="button button-full button-royal"
-      ng-click="$ctrl.newLog = true">Add New Exercise</button>
-    <button class="button button-full button-balanced" ng-click="$ctrl.submitSession()">Submit Session</button>
+      ng-click="$ctrl.newLog = true">
+        Add New Exercise
+    </button>
+
+    <!-- <button class="button button-full button-balanced" ng-click="$ctrl.submitSession()">Submit Session</button> -->
+    <ion-list >
       <ion-item
         class="card item-remove-animate item-avatar item-icon-right"
         type="item-text-wrap"
@@ -58,6 +53,6 @@
           <p>{{exercise.sets}} x {{exercise.repetitions}} x {{exercise.load}}lbs</p>
           <a ng-click="$ctrl.deleteExercise()"><i class="icon ion-close-round assertive"></i></a>
       </ion-item>
-
+    <ion-list >
   </ion-content>
 </ion-view>

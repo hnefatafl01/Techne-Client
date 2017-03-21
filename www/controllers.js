@@ -86,45 +86,46 @@
         //     console.log('vm.sessions',vm.sessions);
         //   })
         // })
-
-
     }
 
   })
 
-  .controller('SessionDetailCtrl', function(SessionService, $stateParams, ExerciseService) {
+  .controller('SessionDetailCtrl', function(SessionService,$state, $stateParams, ExerciseService) {
     const vm = this;
 
     vm.$onInit = function() {
-      vm.tempExerciseArray = [];
       let sessionId = $stateParams.sessionId;
-      SessionService.getSession(sessionId)
-        .then(function(session) {
-          vm.session = session.session;
-          // console.log(vm.session);
-        })
+        SessionService.getSessionWithExercises(sessionId)
+          .then((result) => {
+            console.log(result.session);
+            vm.session = result.session;
+            return vm.session;
+          })
     }
 
     vm.createExercise = function(){
-      vm.tempExerciseArray.push(vm.exercise)
-      // console.log(vm.exercise);
-      // vm.exercise.session_id = vm.session.id; //assign ids somehow
-      ExerciseService.postExercise(vm.exercise)//assign ids somehow
+      let sessionId = $stateParams.sessionId;
+      let exercise = vm.session.exercise;
+      SessionService.addExercisesToSession(sessionId, exercise)
         .then(function(result){
           console.log(result);
+          vm.session = result;
+          return vm.session;
         })
-      delete vm.exercise;
-      // console.log(vm.tempExerciseArray);
+        .then(()=>{
+          $state.transitionTo('tab.session-detail', null, {reload: true, notify:true});
+        })
+      // delete vm.exercise;
     }
 
     vm.submitSession = function() {
-      vm.session.exercises = vm.tempExerciseArray;
-      let sessionId = $stateParams.sessionId;
+      // vm.session.exercises = vm.tempExerciseArray;
+      // let sessionId = $stateParams.sessionId;
       // console.log('id',sessionId);
       // console.log('submit session', vm.session);
       // let exercises = vm.session.exercises;
-      let session = vm.session;
-      console.log('session update', session);
+      // let session = vm.session;
+      // console.log('session update', session);
       // SessionService.updateSessionWithExercises(sessionId, session)
 
         // .then(function(session){

@@ -14,13 +14,12 @@
         ng-href="#/tab/sessions/{{session.id}}"
         >
         <!-- ui-sref="tab.session-detail" -->
-
         <!-- <img ng-src="{{chat.face}}"> -->
-        <div ng-repeat="exercise in session.exercises" >
+        <!-- <div ng-repeat="exercise in session.exercises" > -->
           <h2>{{session.date | date: longDate}}</h2>
-          <!-- <p>{{exercise.name}}</p> -->
-          <p>{{session.id}}</p>
-        </div>
+          <p>{{session.exercise.name}}</p>
+          <!-- <p>{{session.id}}</p> -->
+        <!-- </div> -->
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
