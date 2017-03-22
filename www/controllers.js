@@ -32,20 +32,38 @@
               vol = volumeFn(set,repetitions,load);
               return vol;
             })
-
-            return exerciseVolumes;
-            // session = {
+            // console.log(exerciseVolumes);
+            // return exerciseVolumes
+            // var formattedSession = {
             //   date: dateF,
             //   volumes: volumes
-            //
-            //
             // }
+            // return formattedSessions;
+            var total = exerciseVolumes.reduce(function(sum, current){
+               return sum + current;
+             }, 0);
+             console.log(total);
+            return {
+              date: dateF,
+              volumeF: total
+            }
           })
 
           function volumeFn(s,r,l) { var vol = s * r * l; return vol; }
           console.log(formattedSessions);
+
+          // var flattened = formattedSessions.map((val, index)=>{
+          //   var total = val.reduce(function(sum, current){
+          //      return sum + current;
+          //    }, 0)
+          //    return total
+          // });
+          // console.log(flattened);
+          // return flattened;
           return formattedSessions;
         })
+
+
 
         //filter for exercise name to match with goal
           //var name = 'string1 etc'
