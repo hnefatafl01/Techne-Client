@@ -3,17 +3,57 @@
 
   angular.module('app.controllers', ['nvd3'])
   // TODO: inject me! journalService
-  .controller('GoalCtrl', function($state, GoalService, ChartFactory){
+  .controller('GoalCtrl', function($state, GoalService, ChartFactory, SessionService){
     const vm = this;
 
     vm.$onInit = function() {
       ////TODO: modal.show() to open modal with click etc.
+
       GoalService.getGoals()
         .then(function(result){
           vm.goals = result.goals;
         })
+
       vm.options = ChartFactory.options;
       vm.data = ChartFactory.data;
+
+      SessionService.getSessions()
+        .then((result) => {
+          var sessions = result.sessions;
+          // console.log(sessions);
+          var dateF,vol,set,load,repetitions
+
+          var formattedSessions = sessions.map((session,index) => {
+            dateF = Date.parse(session.date)
+            var exerciseVolumes = session.exercises.map((exercise,index) => {
+              exercise = {
+                name: exercise.name,
+                set: exercise.sets,
+                load: exercise.load,
+                repetitions: exercise.repetitions,
+                
+              }
+              vol = volumeFn(set,repetitions,load)
+              console.log(vol);
+              return exercise;
+            })
+            return exerciseVolumes;
+            // session = {
+            //   date: dateF,
+            //   exercises: exerciseVolumes
+            // }
+          })
+
+          function volumeFn(s,r,l) { var vol = s * r * l; return vol; }
+          console.log(formattedSessions);
+          return formattedSessions;
+        })
+
+        //filter for exercise name to match with goal
+          //var name = 'string1 etc'
+          // var obj = array.filter(function ( obj ) {
+          // return obj.name === name;
+// })[0];
     }
 
     vm.addGoal = function() {

@@ -6,6 +6,7 @@
     .service('ExerciseService', exerciseService)
     .factory('ChartFactory', chartFactory)
     .service('SessionService', sessionService)
+    // .factory('FormatData', formatData)
 
     function sessionService($http, ApiEndpoint){
       let SERVER_URL = ApiEndpoint.url;
@@ -100,7 +101,25 @@
       }
     }
 
+    // function formatData(session) {
+    //   console.log('format the data foo');
+    //
+    //   var date = date();
+    //   var volume = volume();
+    //   var factory = {
+    //       date: date,
+    //       volume: volume
+    //   }
+    //
+    //   return factory;
+    //
+    //   function date(){ return session.date.getTime()}
+    //   function volume() {return session.sets * session.repetitions * session.load;}
+    // }
+
     function chartFactory() {
+
+///lineChart
     //   var options = {
     //     chart: {
     //       type: 'lineChart',
@@ -193,6 +212,9 @@
     //   };
     // }
 
+
+///multiBarChart
+
         // var options = {
         //     chart: {
         //         type: 'multiBarChart',
@@ -275,61 +297,69 @@
 //
 // return factory;
 //
-//     var options = {
-//       chart: {
-//           type: 'historicalBarChart',
-//           height: 450,
-//           margin : {
-//               top: 20,
-//               right: 20,
-//               bottom: 65,
-//               left: 50
-//           },
-//           x: function(d){return d[0];},
-//           y: function(d){return d[1]/100000;},
-//           showValues: true,
-//           valueFormat: function(d){
-//               return d3.format(',.1f')(d);
-//           },
-//           duration: 100,
-//           xAxis: {
-//               axisLabel: 'X Axis',
-//               tickFormat: function(d) {
-//                   return d3.time.format('%x')(new Date(d))
-//               },
-//               rotateLabels: 30,
-//               showMaxMin: false
-//           },
-//           yAxis: {
-//               axisLabel: 'Y Axis',
-//               axisLabelDistance: -10,
-//               tickFormat: function(d){
-//                   return d3.format(',.1f')(d);
-//               }
-//           },
-//           tooltip: {
-//               keyFormatter: function(d) {
-//                   return d3.time.format('%x')(new Date(d));
-//               }
-//           },
-//           zoom: {
-//               enabled: true,
-//               scaleExtent: [1, 10],
-//               useFixedDomain: false,
-//               useNiceScale: false,
-//               horizontalOff: false,
-//               verticalOff: true,
-//               unzoomEventType: 'dblclick.zoom'
-//           }
-//       }
-//     };
-//
-//     var data = {
-//         "key" : "Quantity",
-//         "bar": true,
-//         "values" : [[ 1136005200000 , 1271000.0] , [ 1138683600000 , 1271000.0] , [ 1141102800000 , 1271000.0] , [ 1143781200000 , 0] , [ 1146369600000 , 0] , [ 1149048000000 , 0] , [ 1151640000000 , 0] , [ 1154318400000 , 0] , [ 1156996800000 , 0] , [ 1159588800000 , 3899486.0] , [ 1162270800000 , 3899486.0] , [ 1164862800000 , 3899486.0] , [ 1167541200000 , 3564700.0] , [ 1170219600000 , 3564700.0]]
-//     }
 
+
+
+
+////historicalBarChart
+var options = {
+            chart: {
+                type: 'historicalBarChart',
+                height: 450,
+                margin : {
+                    top: 20,
+                    right: 20,
+                    bottom: 65,
+                    left: 50
+                },
+                x: function(d){return d[0];},
+                y: function(d){return d[1]/100000;},
+                showValues: true,
+                valueFormat: function(d){
+                    return d3.format(',.1f')(d);
+                },
+                duration: 100,
+                xAxis: {
+                    axisLabel: 'Date',
+                    tickFormat: function(d) {
+                        return d3.time.format('%x')(new Date(d))
+                    },
+                    rotateLabels: 30,
+                    showMaxMin: false
+                },
+                yAxis: {
+                    axisLabel: 'Total Volume (sets x reps x load)',
+                    axisLabelDistance: -10,
+                    tickFormat: function(d){
+                        return d3.format(',.1f')(d);
+                    }
+                },
+                tooltip: {
+                    keyFormatter: function(d) {
+                        return d3.time.format('%x')(new Date(d));
+                    }
+                },
+                zoom: {
+                    enabled: true,
+                    scaleExtent: [1, 10],
+                    useFixedDomain: false,
+                    useNiceScale: false,
+                    horizontalOff: false,
+                    verticalOff: true,
+                    unzoomEventType: 'dblclick.zoom'
+                }
+            }
+        };
+
+        var data = [
+            {
+                "key" : "Quantity" ,
+                "bar": true,
+                "values" : [[8640000, 4050],[8640000*2, 6750],[8640000*3, 7050],[8640000*3, ]]
+            }];
+
+
+//multiBarChart
 // nv.addGraph(function() {
 // var chart = nv.models.multiBarChart()
 // .transitionDuration(350)
@@ -369,41 +399,43 @@
 // ];
 
 
-    var options = {
-        chart: {
-            type: 'discreteBarChart',
-            height: 450,
-            margin : {
-                top: 20,
-                right: 20,
-                bottom: 60,
-                left: 55
-            },
-            x: function(d){ return d.label; },
-            y: function(d){ return d.value; },
-            showValues: true,
-            valueFormat: function(d){
-                return d3.format(',.4f')(d);
-            },
-            transitionDuration: 500,
-            xAxis: {
-                axisLabel: 'X Axis'
-            },
-            yAxis: {
-                axisLabel: 'Y Axis',
-                axisLabelDistance: 30
-            }
-        }
-    };
+//discreteBarChart//
 
-    var data = [{
-        key: "Cumulative Return",
-        values: [
-            { "label" : "sets" , "value" : 3 },
-            { "label" : "reps" , "value" : 10 },
-            { "label" : "load" , "value" : 135 }
-        ]
-    }];
+    // var options = {
+    //     chart: {
+    //         type: 'discreteBarChart',
+    //         height: 450,
+    //         margin : {
+    //             top: 20,
+    //             right: 20,
+    //             bottom: 60,
+    //             left: 55
+    //         },
+    //         x: function(d){ return d.label; },
+    //         y: function(d){ return d.value; },
+    //         showValues: true,
+    //         valueFormat: function(d){
+    //             return d3.format(',.4f')(d);
+    //         },
+    //         transitionDuration: 500,
+    //         xAxis: {
+    //             axisLabel: 'X Axis'
+    //         },
+    //         yAxis: {
+    //             axisLabel: 'Y Axis',
+    //             axisLabelDistance: 30
+    //         }
+    //     }
+    // };
+    //
+    // var data = [{
+    //     key: "Cumulative Return",
+    //     values: [
+    //         { "label" : "sets" , "value" : 3 },
+    //         { "label" : "reps" , "value" : 10 },
+    //         { "label" : "load" , "value" : 135 }
+    //     ]
+    // }];
 
     var factory = {
       options: options,
