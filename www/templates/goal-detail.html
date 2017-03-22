@@ -3,7 +3,13 @@
     <h2>Goals</h2>
     <div class="list" >
       <form ng-submit="$ctrl.createGoal()">
-        <label class="item item-input item-select">
+        <label class="item item-input">
+          <div class="input-label">
+            Exercise
+          </div>
+          <input type="text" placeholder="Exercise Name" ng-model="$ctrl.goal.exercise">
+        </label>
+        <!-- <label class="item item-input item-select">
           <div class="input-label">
             Exercise
           </div>
@@ -11,7 +17,7 @@
             <option >Pullups</option>
             <option selected>Bench Press</option>
           </select>
-        </label>
+        </label> -->
 
         <label class="item item-input item-select">
           <div class="input-label">
