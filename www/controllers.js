@@ -167,11 +167,12 @@
     vm.submitSession = function() {
       let session = vm.session;
       let id = session.id;
-      console.log(session.id);
+      // console.log(session.id);
       SessionService.updateSession(id, session)
         .then(function(session){
           vm.session = session;
-          $state.go('tab.session')
+          // $state.go('tab.session')
+          $state.reload();
         })
     }
 
@@ -181,7 +182,10 @@
         .then((result) => {
           console.log(result.data);
           return result;
+        }).then(function(){
+            $state.reload();
         })
+
     }
 
   })
