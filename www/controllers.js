@@ -7,6 +7,7 @@
     const vm = this;
 
     vm.$onInit = function() {
+      ////TODO: modal.show() to open modal with click etc.
       GoalService.getGoals()
         .then(function(result){
           vm.goals = result.goals;
@@ -73,11 +74,12 @@
         .then(function(result){
             return result.session;
         })
+        $state.reload();
     }
 
   })
 
-  .controller('SessionDetailCtrl', function(SessionService,$state, $stateParams, ExerciseService) {
+  .controller('SessionDetailCtrl', function(SessionService, $state, $stateParams, ExerciseService) {
     const vm = this;
 
     vm.$onInit = function() {
@@ -106,6 +108,7 @@
     vm.submitSession = function() {
       let session = vm.session;
       let id = session.id;
+      console.log(session.id);
       SessionService.updateSession(id, session)
         .then(function(session){
           vm.session = session;
@@ -113,8 +116,20 @@
         })
     }
 
-    vm.deleteExercise = function(){
+    vm.deleteExercise = function(index){
       console.log('delete this exercise');
+      // console.log(vm.session);
+      // console.log(vm.session.exercise);
+      let exerciseId = vm.session.exercises[index].id;
+      console.log(exerciseId);
+      // let id = vm.session.exercise.id
+      // console.log(id);
+      SessionService.deleteExerciseFromSession(exerciseId)
+        .then((result) => {
+          console.log(result);
+          return result;
+        })
+
     }
 
   })

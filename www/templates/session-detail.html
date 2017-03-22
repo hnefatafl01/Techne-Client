@@ -1,7 +1,8 @@
 
 <ion-view
   ng-controller="SessionDetailCtrl as $ctrl"
-  view-title="{{$ctrl.session.date}}">
+  view-title="{{$ctrl.session.date | date:'shortDate'}}">
+
   <ion-content class="padding background-dark">
     <div class="list" ng-if="$ctrl.newLog === true">
 
@@ -51,7 +52,7 @@
         ng-repeat="exercise in $ctrl.session.exercises track by $index">
           <h2>{{exercise.name}}</h2>
           <p>{{exercise.sets}} x {{exercise.repetitions}} x {{exercise.load}}lbs</p>
-          <a ng-click="$ctrl.deleteExercise()"><i class="icon ion-close-round assertive"></i></a>
+          <a ng-click="$ctrl.deleteExercise($index)"><i class="icon ion-close-round assertive"></i></a>
       </ion-item>
     <ion-list >
   </ion-content>

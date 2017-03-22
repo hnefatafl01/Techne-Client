@@ -57,6 +57,16 @@
       }
     }
 
+    // this.deleteExerciseFromSession = function() {
+      // console.log(session);
+      // let id = session.id
+      // return $http.delete(`${SERVER_URL}/sessions/${id}/exercises/delete/${id}`, session)
+      //   .then((result) => {
+      //     console.log('deleted');
+      //     res.json({result})
+      //   })
+    // }
+
     function goalService($http, ApiEndpoint) {
       let SERVER_URL = ApiEndpoint.url;
       // console.log('services module');

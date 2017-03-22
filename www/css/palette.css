@@ -5,8 +5,10 @@
 .background-light {
   /*background-color: #434857;*/
   background-color: #252830;
-  border-color: #434857;
-  color: #434857;
+  /*border-color: #434857;*/
+  /*color: #434857;*/
+  color: #1997C6;
+  border-color: #1997C6;
 }
 
 .blue-accent {
@@ -17,6 +19,15 @@
 .green-accent {
   background-color: #1BC98E;
 }
+
+/*.header-item {
+  color: #1BC98E;*/
+  /*font-size: .83em;*/
+/*}*/
+
+/*.bar .title {
+    color: #1BC98E;
+}*/
 
 .back-button > i {
   color: #1BC98E;
