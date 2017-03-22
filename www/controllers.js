@@ -141,13 +141,14 @@
   .controller('SessionDetailCtrl', function(SessionService, $state, $stateParams, ExerciseService) {
     const vm = this;
 
-    vm.$onInit = function() {
+    vm.$onInit = function(event, viewData) {
       let sessionId = $stateParams.sessionId;
-        SessionService.getSessionWithExercises(sessionId)
-          .then((result) => {
-            vm.session = result.session;
-            return vm.session;
-          })
+
+      SessionService.getSessionWithExercises(sessionId)
+        .then((result) => {
+          vm.session = result.session;
+          return vm.session;
+        })
     }
 
     vm.createExercise = function(){
@@ -161,7 +162,7 @@
         .then(()=>{
           $state.reload();
         })
-      // delete vm.exercise;
+      delete vm.exercise;
     }
 
     vm.submitSession = function() {
@@ -171,8 +172,8 @@
       SessionService.updateSession(id, session)
         .then(function(session){
           vm.session = session;
-          // $state.go('tab.session')
-          $state.reload();
+          // $state.go('tab.session');
+          // $state.go('');
         })
     }
 
@@ -185,7 +186,6 @@
         }).then(function(){
             $state.reload();
         })
-
     }
 
   })

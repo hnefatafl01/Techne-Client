@@ -1,7 +1,8 @@
 
 <ion-view
   ng-controller="SessionDetailCtrl as $ctrl"
-  view-title="{{$ctrl.session.date | date:'shortDate'}}">
+  view-title="">
+  <!-- {{$ctrl.session.date | date:'shortDate'}} -->
 
   <ion-content class="padding background-dark">
     <div class="list" ng-if="$ctrl.newLog === true">
@@ -44,8 +45,9 @@
         Add New Exercise
     </button>
 
-    <button class="button button-full button-balanced" ng-click="$ctrl.submitSession()">Submit Session</button>
-    <ion-list >
+    <button class="button button-full button-balanced" ng-click="$ctrl.submitSession()" ui-sref="tab.session">Submit Session</button>
+
+    <ion-list>
       <ion-item
         class="card item-remove-animate item-avatar item-icon-right"
         type="item-text-wrap"
