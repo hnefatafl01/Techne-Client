@@ -117,19 +117,12 @@
     }
 
     vm.deleteExercise = function(index){
-      console.log('delete this exercise');
-      // console.log(vm.session);
-      // console.log(vm.session.exercise);
-      let exerciseId = vm.session.exercises[index].id;
-      console.log(exerciseId);
-      // let id = vm.session.exercise.id
-      // console.log(id);
-      SessionService.deleteExerciseFromSession(exerciseId)
+      let id = vm.session.exercises[index].id;
+      SessionService.deleteExerciseFromSession(id)
         .then((result) => {
           console.log(result);
           return result;
         })
-
     }
 
   })

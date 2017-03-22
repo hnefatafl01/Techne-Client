@@ -55,17 +55,18 @@
             return result.data;
           })
       }
-    }
 
-    // this.deleteExerciseFromSession = function() {
-      // console.log(session);
+
+      this.deleteExerciseFromSession = function(exerciseId) {
+        console.log('hi');
       // let id = session.id
-      // return $http.delete(`${SERVER_URL}/sessions/${id}/exercises/delete/${id}`, session)
-      //   .then((result) => {
-      //     console.log('deleted');
-      //     res.json({result})
-      //   })
-    // }
+        return $http.delete(`${SERVER_URL}/exercises/delete/${exerciseId}`)
+          .then((result) => {
+            console.log('deleted');
+            return result;
+          })
+      }
+    }
 
     function goalService($http, ApiEndpoint) {
       let SERVER_URL = ApiEndpoint.url;
