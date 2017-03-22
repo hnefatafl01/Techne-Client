@@ -15,7 +15,8 @@
         })
 
       vm.options = ChartFactory.options;
-      vm.data = ChartFactory.data;
+      // vm.data = ChartFactory.data;
+
 
       SessionService.getSessions()
         .then((result) => {
@@ -32,17 +33,11 @@
               vol = volumeFn(set,repetitions,load);
               return vol;
             })
-            // console.log(exerciseVolumes);
-            // return exerciseVolumes
-            // var formattedSession = {
-            //   date: dateF,
-            //   volumes: volumes
-            // }
-            // return formattedSessions;
+
             var total = exerciseVolumes.reduce(function(sum, current){
                return sum + current;
              }, 0);
-             console.log(total);
+            //  console.log(total);
             return {
               date: dateF,
               volumeF: total
@@ -50,18 +45,26 @@
           })
 
           function volumeFn(s,r,l) { var vol = s * r * l; return vol; }
-          console.log(formattedSessions);
+          // console.log(formattedSessions);
+          return formattedSessions.map((obj)=>{
+            return [obj.date, obj.volumeF]
+          })
 
-          // var flattened = formattedSessions.map((val, index)=>{
-          //   var total = val.reduce(function(sum, current){
-          //      return sum + current;
-          //    }, 0)
-          //    return total
-          // });
-          // console.log(flattened);
-          // return flattened;
-          return formattedSessions;
+
+        }).then((session)=>{
+          // console.log(session);
+          vm.data = [
+            {
+              "key" : "Quantity" ,
+              "bar": true,
+              "values" : session
+            }
+          ];
+          console.log(vm.data);
         })
+
+
+
 
 
 

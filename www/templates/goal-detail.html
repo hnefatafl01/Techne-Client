@@ -1,20 +1,20 @@
 <ion-view view-title="New Goal" ng-controller=" GoalDetailCtrl as $ctrl">
   <ion-content class="padding background-dark">
     <h2>Goals</h2>
-    <div class="list background-light" >
+    <div class="list" >
       <form ng-submit="$ctrl.createGoal()">
-        <label class="item item-input item-select background-light">
-          <div class="input-label background-light">
+        <label class="item item-input item-select">
+          <div class="input-label">
             Exercise
           </div>
           <select ng-model="$ctrl.goal.exercise" >
-            <option class="background-light">Pullups</option>
+            <option >Pullups</option>
             <option selected>Bench Press</option>
           </select>
         </label>
 
-        <label class="item item-input item-select background-light">
-          <div class="input-label background-light">
+        <label class="item item-input item-select">
+          <div class="input-label">
             Goal Reps
           </div>
           <select ng-model="$ctrl.goal.repetitions" class="background-light">
@@ -25,16 +25,17 @@
                    max="300" step="1" class="background-light">
         </label>
 
-        <label class="item item-input class="background-light"">
-          <span class="input-label background-light">Goal Load</span>
+        <label class="item item-input">
+          <span class="input-label ">Goal Load</span>
           <input ng-model="$ctrl.goal.load"
-                 class="background-light"
+                 class=""
                  type="number" min="0" max="1000" step="5">
         </label>
 
-        <label class="item item-input background-light">Goal Finish Date</label>
-        <input ng-model="$ctrl.goal.goalFinishDate" class="background-light" type="date">
-
+        <label class="item item-input ">
+          <span class="input-label ">Goal Finish Date</span>
+          <input ng-model="$ctrl.goal.goalFinishDate" class="dateInput" type="date">
+        </label>
         <button class="button button-full button-positive">Add New Goal</button>
       </form>
 

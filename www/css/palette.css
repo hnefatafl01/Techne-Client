@@ -73,3 +73,7 @@ svg text {
 .nvd3.nv-line .nv-slice text {
     fill: white !important;
 }
+
+.dateInput {
+  width:100%
+}

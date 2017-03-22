@@ -313,7 +313,7 @@ var options = {
                     left: 50
                 },
                 x: function(d){return d[0];},
-                y: function(d){return d[1]/100000;},
+                y: function(d){return d[1]/1000;},
                 showValues: true,
                 valueFormat: function(d){
                     return d3.format(',.1f')(d);
@@ -327,8 +327,9 @@ var options = {
                     rotateLabels: 30,
                     showMaxMin: false
                 },
+                // xDomain: [1489536000000,1490054400000],
                 yAxis: {
-                    axisLabel: 'Total Volume (sets x reps x load)',
+                    axisLabel: 'Total Volume (sets x reps x load)/1000',
                     axisLabelDistance: -10,
                     tickFormat: function(d){
                         return d3.format(',.1f')(d);
@@ -340,7 +341,7 @@ var options = {
                     }
                 },
                 zoom: {
-                    enabled: true,
+                    enabled: false,
                     scaleExtent: [1, 10],
                     useFixedDomain: false,
                     useNiceScale: false,
@@ -351,12 +352,7 @@ var options = {
             }
         };
 
-        var data = [
-            {
-                "key" : "Quantity" ,
-                "bar": true,
-                "values" : [[8640000, 4050],[8640000*2, 6750],[8640000*3, 7050],[8640000*3, ]]
-            }];
+
 
 
 //multiBarChart
@@ -438,8 +434,7 @@ var options = {
     // }];
 
     var factory = {
-      options: options,
-      data: data
+      options: options
     }
 
     return factory;
