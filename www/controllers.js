@@ -26,21 +26,19 @@
           var formattedSessions = sessions.map((session,index) => {
             dateF = Date.parse(session.date)
             var exerciseVolumes = session.exercises.map((exercise,index) => {
-              exercise = {
-                name: exercise.name,
-                set: exercise.sets,
-                load: exercise.load,
-                repetitions: exercise.repetitions,
-                
-              }
-              vol = volumeFn(set,repetitions,load)
-              console.log(vol);
-              return exercise;
+              set = exercise.sets
+              load = exercise.load
+              repetitions = exercise.repetitions
+              vol = volumeFn(set,repetitions,load);
+              return vol;
             })
+
             return exerciseVolumes;
             // session = {
             //   date: dateF,
-            //   exercises: exerciseVolumes
+            //   volumes: volumes
+            //
+            //
             // }
           })
 
