@@ -56,7 +56,6 @@
           })
       }
 
-
       this.deleteExerciseFromSession = function(exerciseId) {
         console.log('hi');
       // let id = session.id

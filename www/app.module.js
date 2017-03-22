@@ -9,8 +9,8 @@
   'use strict';
   angular.module('app', ['ionic', 'nvd3', 'app.controllers', 'app.services'])
     .constant('ApiEndpoint', {
-      // url: 'https://techne-app.herokuapp.com'
-      url: 'http://localhost:5000'
+      url: 'https://techne-app.herokuapp.com'
+      // url: 'http://localhost:5000'
     })
     .run(function($ionicPlatform) {
       $ionicPlatform.ready(function() {

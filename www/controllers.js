@@ -120,7 +120,7 @@
       let id = vm.session.exercises[index].id;
       SessionService.deleteExerciseFromSession(id)
         .then((result) => {
-          console.log(result);
+          console.log(result.data);
           return result;
         })
     }
