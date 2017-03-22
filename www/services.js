@@ -193,63 +193,63 @@
     //   };
     // }
 
-        var options = {
-            chart: {
-                type: 'multiBarChart',
-                height: 500,
-                margin : {
-                    top: 20,
-                    right: 20,
-                    bottom: 45,
-                    left: 45
-                },
-                clipEdge: true,
-                duration: 500,
-                stacked: true,
-                xAxis: {
-                    axisLabel: 'Sessions',
-                    showMaxMin: false,
-                    tickFormat: function(d){
-                        return d3.format(',f')(d);
-                    }
-                },
-                yAxis: {
-                    axisLabel: 'Volume: reps x load',
-                    axisLabelDistance: -20,
-                    tickFormat: function(d){
-                        return d3.format()(d);
-                    }
-                }
-            }
-        };
+        // var options = {
+        //     chart: {
+        //         type: 'multiBarChart',
+        //         height: 500,
+        //         margin : {
+        //             top: 20,
+        //             right: 20,
+        //             bottom: 45,
+        //             left: 45
+        //         },
+        //         clipEdge: true,
+        //         duration: 500,
+        //         stacked: true,
+        //         xAxis: {
+        //             axisLabel: 'Sessions',
+        //             showMaxMin: false,
+        //             tickFormat: function(d){
+        //                 return d3.format(',f')(d);
+        //             }
+        //         },
+        //         yAxis: {
+        //             axisLabel: 'Volume: reps x load',
+        //             axisLabelDistance: -20,
+        //             tickFormat: function(d){
+        //                 return d3.format()(d);
+        //             }
+        //         }
+        //     }
+        // };
 
-        var data = generateData(3, 30, 1 );
+        // var data = generateData(3, 30, 1 );
 
-        var factory = {
-          options: options,
-          data: data
-        }
+        // var factory = {
+        //   options: options,
+        //   data: data
+        // }
+        //
+        // return factory;
 
-        return factory;
-
-        function generateData(z,x,y) {
-          return stream_layers(z,x,y).map(function(data, i) {
-              return {
-                  key: 'Stream' + i,
-                  values: data
-                  // ,
-                  // color: '#E64759'
-              };
-          });
-        }
-
-        function stream_layers(numLayers, layerLength, barHeight) {
-          return d3.range(numLayers).map(function() {
-              var a = [], i;
-              for (i = 0; i < layerLength; i++) a[i] = barHeight ;
-              return a.map(stream_index);
-          });
-        }
+        // function generateData(z,x,y) {
+        //   return stream_layers(z,x,y).map(function(data, i) {
+        //       return {
+        //           key: 'Stream' + i,
+        //           values: data
+        //           // ,
+        //           // color: '#E64759'
+        //       };
+        //   });
+        // }
+        //
+        // function stream_layers(numLayers, layerLength, barHeight) {
+        //   return d3.range(numLayers).map(function() {
+        //       var a = [], i;
+        //       for (i = 0; i < layerLength; i++) a[i] = barHeight ;
+        //       return a.map(stream_index);
+        //   });
+        // }
 
         /* Another layer generator using gamma distributions. */
         // function stream_waves(n, m) {
@@ -261,13 +261,13 @@
         //     });
         // }
 
-        function stream_index(d, i) {
-          return {
-            x: i,
-            y: Math.max(0, d)
-          };
-        }
-}
+        // function stream_index(d, i) {
+        //   return {
+        //     x: i,
+        //     y: Math.max(0, d)
+        //   };
+        // }
+// }
 // var factory = {
 //   options: options,
 //   data: data
@@ -329,8 +329,90 @@
 //         "bar": true,
 //         "values" : [[ 1136005200000 , 1271000.0] , [ 1138683600000 , 1271000.0] , [ 1141102800000 , 1271000.0] , [ 1143781200000 , 0] , [ 1146369600000 , 0] , [ 1149048000000 , 0] , [ 1151640000000 , 0] , [ 1154318400000 , 0] , [ 1156996800000 , 0] , [ 1159588800000 , 3899486.0] , [ 1162270800000 , 3899486.0] , [ 1164862800000 , 3899486.0] , [ 1167541200000 , 3564700.0] , [ 1170219600000 , 3564700.0]]
 //     }
+
+// nv.addGraph(function() {
+// var chart = nv.models.multiBarChart()
+// .transitionDuration(350)
+// .reduceXTicks(true)   //If 'false', every single x-axis tick label will be rendered.
+// .rotateLabels(0)      //Angle to rotate x-axis labels.
+// .showControls(true)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
+// .groupSpacing(0.1)    //Distance between each group of bars.
+// ;
 //
+// chart.xAxis
+//   .tickFormat(d3.format(',f'));
 //
-// }
+// chart.yAxis
+//   .tickFormat(d3.format(',.1f'));
+//
+// d3.select('#chart1 svg')
+//   .datum(test_data)
+//   .call(chart);
+//
+// nv.utils.windowResize(chart.update);
+//
+// return chart;
+// });
+//
+// test_data = [
+//     {
+//       values: [{3,10},{3,10}],
+//       key: 'some key',
+//       color: 'some color'
+//     },....
+//
+//     {
+//       values: [{2,25},{2,30}],
+//       key: 'some key',
+//       color: 'some color'
+//     }
+// ];
+
+
+    var options = {
+        chart: {
+            type: 'discreteBarChart',
+            height: 450,
+            margin : {
+                top: 20,
+                right: 20,
+                bottom: 60,
+                left: 55
+            },
+            x: function(d){ return d.label; },
+            y: function(d){ return d.value; },
+            showValues: true,
+            valueFormat: function(d){
+                return d3.format(',.4f')(d);
+            },
+            transitionDuration: 500,
+            xAxis: {
+                axisLabel: 'X Axis'
+            },
+            yAxis: {
+                axisLabel: 'Y Axis',
+                axisLabelDistance: 30
+            }
+        }
+    };
+
+    var data = [{
+        key: "Cumulative Return",
+        values: [
+            { "label" : "sets" , "value" : 3 },
+            { "label" : "reps" , "value" : 10 },
+            { "label" : "load" , "value" : 135 }
+        ]
+    }];
+
+    var factory = {
+      options: options,
+      data: data
+    }
+
+    return factory;
+}
+
+
 
 }());
