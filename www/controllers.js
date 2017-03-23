@@ -9,10 +9,10 @@
 
     vm.signin = function() {
       LandingService.getUser(vm.user)
-        .then(function(user){
-          return user;
-          $state.go('tab.goal')
+        .then(function(){
+            $state.go('tab.goals')
         })
+
     }
 
     vm.signup = function() {
@@ -22,9 +22,9 @@
         password: vm.newUser.password
       }
       LandingService.createNewUser(vm.newUser)
-        .then(function(user){
-          console.log(user);
-          $state.go('tab.goal')
+        .then(function(){
+          console.log('newUser');
+          $state.go('tab.goals')
         })
     }
   })
