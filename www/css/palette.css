@@ -13,13 +13,13 @@
 }
 
 .pad-top {
-  margin-top: 80px;
+  margin-top: 15vh;
 }
 
 .space-top {
   position: absolute;
-  margin-top: 220px;
-  margin-left: 7vw;
+  margin-top: 32vh;
+  /*margin-left: 2vw;*/
 }
 
 .button.button-clear.button-calm {
