@@ -1,12 +1,21 @@
 <ion-view view-title="" ng-controller="LandingCtrl as $ctrl">
   <ion-content class="padding background-dark">
     <!-- <div class="list"> -->
-      <div class="">
+      <div class="pad-top">
         <h1 class="landing-brand">Techne</h1>
         <h4 class="landing-subtitle">crafting goal setting & tracking progress</h4>
       </div>
 
-      <form novalidate ng-submit="$ctrl.signin()">
+      <div class="space-top">
+        <button class="button button-clear button-calm" ng-click="$ctrl.showSignin = !$ctrl.showSignin">
+          new user signup
+        </button>
+        <button class="button button-clear button-calm" ng-click="$ctrl.showSignup = !$ctrl.showSignup">
+          existing user signin
+        </button>
+      </div>
+
+      <form novalidate ng-submit="$ctrl.signin()" ng-if="$ctrl.showSignin === true">
         <label class="item item-input">
           <!-- <div class="input-label">Email</div> -->
           <input type="email" placeholder="Email" ng-model="$ctrl.user.email" required>
@@ -20,7 +29,7 @@
       </form>
 
 
-      <form novalidate ng-submit="$ctrl.signup()">
+      <form novalidate ng-submit="$ctrl.signup()" ng-if="$ctrl.showSignup === true">
         <label class="item item-input">
           <!-- <div class="input-label">Email</div> -->
           <input type="text" placeholder="Username" ng-model="$ctrl.newUser.username" required>

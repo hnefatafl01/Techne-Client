@@ -7,6 +7,14 @@
     console.log('hello landing control');
     const vm = this;
 
+
+    vm.$onInit = function() {
+      vm.showSignup = false;
+      vm.showSignin = false;
+      console.log(vm.showSignin);
+      console.log(vm.showSignup);
+    }
+
     vm.signin = function() {
       LandingService.getUser(vm.user)
         .then(function(){

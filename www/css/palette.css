@@ -12,6 +12,23 @@
   text-align: center;
 }
 
+.pad-top {
+  margin-top: 80px;
+}
+
+.space-top {
+  position: absolute;
+  margin-top: 220px;
+  margin-left: 7vw;
+}
+
+.button.button-clear.button-calm {
+    font-family: 'Baloo Bhaina', cursive;
+    font-size: 1.2em;
+    color: #1BC98E;
+    /*text-align: center;*/
+}
+
 .background-dark {
   background-color: #252830;
 }
