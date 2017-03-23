@@ -14,12 +14,19 @@
       this.createNewUser = function(user) {
         return $http.post(`${SERVER_URL}/auth/signup`, user)
           .then(function(user){
-            console.log(user);
             return user;
           })
       }
-    }
 
+      this.getUser = function(user) {
+        return $http.post(`${SERVER_URL}/auth/signin`, user)
+          .then(function(user){
+            return user;
+          })
+      }
+
+    }
+//sessionService
     function sessionService($http, ApiEndpoint){
       let SERVER_URL = ApiEndpoint.url;
 
@@ -79,7 +86,7 @@
           })
       }
     }
-
+//goalService
     function goalService($http, ApiEndpoint) {
       let SERVER_URL = ApiEndpoint.url;
       // console.log('services module');
@@ -97,7 +104,7 @@
         })
       }
     }
-
+//exerciseService
     function exerciseService($http, ApiEndpoint) {
       let SERVER_URL = ApiEndpoint.url;
       this.getExercises = function() {

@@ -8,12 +8,11 @@
     const vm = this;
 
     vm.signin = function() {
-      // console.log('existing user');
-      // LandingService.createNewUser()
-      //   .then(function(user){
-      //     $state.go('tab.goal')
-      //     return user;
-      //   })
+      LandingService.getUser(vm.user)
+        .then(function(user){
+          return user;
+          $state.go('tab.goal')
+        })
     }
 
     vm.signup = function() {
@@ -24,7 +23,7 @@
       }
       LandingService.createNewUser(vm.newUser)
         .then(function(user){
-          console.log(user.username);
+          console.log(user);
           $state.go('tab.goal')
         })
     }
