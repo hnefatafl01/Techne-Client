@@ -32,9 +32,9 @@
       LandingService.createNewUser(vm.newUser)
         .then(function(){
           console.log('newUser');
-
+          // $state.go('tab.goals')
         })
-        $state.go('tab.goals')
+
     }
   })
 
