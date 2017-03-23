@@ -3,16 +3,21 @@
 
   angular.module("app")
     .config(config);
-  // Ionic uses AngularUI Router which uses the concept of states
+
   // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
+
 
   function config($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.views.maxCache(0);
   $stateProvider
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('landing', {
+    url: '/',
+    templateUrl: 'templates/landing.html',
+    controller: 'LandingCtrl'
+  })
+
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -66,7 +71,6 @@
     })
 
   //Account
-
   .state('tab.account', {
     url: '/account',
     views: {
@@ -78,7 +82,7 @@
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/goal');
+  $urlRouterProvider.otherwise('/');
   };
 
 }());

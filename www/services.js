@@ -6,7 +6,19 @@
     .service('ExerciseService', exerciseService)
     .factory('ChartFactory', chartFactory)
     .service('SessionService', sessionService)
-    // .factory('FormatData', formatData)
+    .service('LandingService', landingService)
+
+    function landingService($http, ApiEndpoint){
+      let SERVER_URL = ApiEndpoint.url;
+
+      this.createNewUser = function(user) {
+        return $http.post(`${SERVER_URL}/auth/signup`, user)
+          .then(function(user){
+            console.log(user);
+            return user;
+          })
+      }
+    }
 
     function sessionService($http, ApiEndpoint){
       let SERVER_URL = ApiEndpoint.url;

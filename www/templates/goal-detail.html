@@ -3,25 +3,12 @@
     <div class="list" >
       <form ng-submit="$ctrl.createGoal()">
         <label class="item item-input">
-          <div class="input-label">
-            Exercise
-          </div>
+          <div class="input-label">Exercise</div>
           <input type="text" placeholder="Exercise Name" ng-model="$ctrl.goal.exercise">
         </label>
-        <!-- <label class="item item-input item-select">
-          <div class="input-label">
-            Exercise
-          </div>
-          <select ng-model="$ctrl.goal.exercise" >
-            <option >Pullups</option>
-            <option selected>Bench Press</option>
-          </select>
-        </label> -->
 
         <label class="item item-input item-select">
-          <div class="input-label">
-            Goal Reps
-          </div>
+          <div class="input-label">Goal Reps</div>
           <select ng-model="$ctrl.goal.repetitions" class="background-light">
             <option>10</option>
             <option selected>5</option>
@@ -37,7 +24,7 @@
                  type="number" min="0" max="1000" step="5">
         </label>
 
-        <label class="item item-input ">
+        <label class="item item-input">
           <span class="input-label ">Goal Finish Date</span>
           <input ng-model="$ctrl.goal.goalFinishDate" class="dateInput" type="date">
         </label>

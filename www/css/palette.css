@@ -1,3 +1,17 @@
+.landing-brand {
+  font-family: 'Baloo Bhaina', cursive;
+  font-size: 5em;
+  color: #1BC98E;
+  text-align: center;
+}
+
+.landing-subtitle {
+  font-family: 'Baloo Bhaina', cursive;
+  font-size: 1.25em;
+  color: #1997C6;
+  text-align: center;
+}
+
 .background-dark {
   background-color: #252830;
 }

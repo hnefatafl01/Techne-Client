@@ -1,0 +1,41 @@
+<ion-view view-title="" ng-controller="LandingCtrl as $ctrl">
+  <ion-content class="padding background-dark">
+    <!-- <div class="list"> -->
+      <div class="">
+        <h1 class="landing-brand">Techne</h1>
+        <h4 class="landing-subtitle">crafting goal setting & tracking progress</h4>
+      </div>
+
+      <form novalidate ng-submit="$ctrl.signin()">
+        <label class="item item-input">
+          <!-- <div class="input-label">Email</div> -->
+          <input type="email" placeholder="Email" ng-model="$ctrl.user.email" required>
+        </label>
+
+        <label class="item item-input">
+          <!-- <span class="input-label ">Password</span> -->
+          <input ng-model="$ctrl.user.password" type="password" placeholder="Password" required>
+        </label>
+        <button class="button button-full green-accent">Signin</button>
+      </form>
+
+
+      <form novalidate ng-submit="$ctrl.signup()">
+        <label class="item item-input">
+          <!-- <div class="input-label">Email</div> -->
+          <input type="text" placeholder="Username" ng-model="$ctrl.newUser.username" required>
+        </label>
+        <label class="item item-input">
+          <!-- <div class="input-label">Email</div> -->
+          <input type="email" placeholder="Email" ng-model="$ctrl.newUser.email" required>
+        </label>
+
+        <label class="item item-input">
+          <!-- <span class="input-label ">Password</span> -->
+          <input type="password" placeholder="Password" ng-model="$ctrl.newUser.password" required>
+        </label>
+        <button class="button button-full green-accent">Signup</button>
+      </form>
+    <!-- </div> -->
+  </ion-content>
+</ion-view>

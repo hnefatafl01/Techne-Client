@@ -2,7 +2,34 @@
   'use strict';
 
   angular.module('app.controllers', ['nvd3'])
-  // TODO: inject me! journalService
+
+  .controller('LandingCtrl', function($state, LandingService){
+    console.log('hello landing control');
+    const vm = this;
+
+    vm.signin = function() {
+      // console.log('existing user');
+      // LandingService.createNewUser()
+      //   .then(function(user){
+      //     $state.go('tab.goal')
+      //     return user;
+      //   })
+    }
+
+    vm.signup = function() {
+      vm.newUser = {
+        username: vm.newUser.username,
+        email: vm.newUser.email,
+        password: vm.newUser.password
+      }
+      LandingService.createNewUser(vm.newUser)
+        .then(function(user){
+          console.log(user.username);
+          $state.go('tab.goal')
+        })
+    }
+  })
+
   .controller('GoalCtrl', function($state, GoalService, ChartFactory, SessionService){
     const vm = this;
 
