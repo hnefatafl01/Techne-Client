@@ -7,8 +7,17 @@
   // Learn more here: https://github.com/angular-ui/ui-router
 
 
-  function config($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  function config($stateProvider, $urlRouterProvider, $ionicConfigProvider,$httpProvider, jwtInterceptorProvider,jwtOptionsProvider) {
   $ionicConfigProvider.views.maxCache(0);
+
+  jwtOptionsProvider.config({ whiteListedDomains: ['http://192.168.0.5:8100/'] });
+
+  jwtInterceptorProvider.tokenGetter = function(store) {
+    return store.get('jwt')
+  }
+
+  $httpProvider.interceptors.push('jwtInterceptor')
+
   $stateProvider
   // setup an abstract state for the tabs directive
   .state('landing', {
