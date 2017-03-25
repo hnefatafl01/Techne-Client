@@ -1,27 +1,29 @@
 (function() {
   'use strict';
 
-  angular.module('app.services', [])
+  angular.module('app.services', ['angular-storage'])
     .service('GoalService', goalService)
     .service('ExerciseService', exerciseService)
     .factory('ChartFactory', chartFactory)
     .service('SessionService', sessionService)
     .service('LandingService', landingService)
 
-    function landingService($http, ApiEndpoint){
+    function landingService($http, ApiEndpoint, store){
       let SERVER_URL = ApiEndpoint.url;
 
       this.createNewUser = function(user) {
         return $http.post(`${SERVER_URL}/auth/signup`, user)
-          .then(function(user){
-            return user;
+          .then(function(response){
+            console.log(response);
+            return response.data
           })
       }
 
       this.getUser = function(user) {
         return $http.post(`${SERVER_URL}/auth/signin`, user)
-          .then(function(user){
-            return user;
+          .then(function(response){
+            console.log(response.data);
+            return response.data;
           })
       }
 

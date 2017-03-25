@@ -1,40 +1,46 @@
 (function() {
   'use strict';
 
-  angular.module('app.controllers', ['nvd3'])
+  angular.module('app.controllers', ['nvd3','angular-storage'])
 
-  .controller('LandingCtrl', function($state, LandingService){
-    console.log('hello landing control');
+  .controller('LandingCtrl', function($state, LandingService, store){
     const vm = this;
-
 
     vm.$onInit = function() {
       vm.showSignup = false;
       vm.showSignin = false;
-      console.log(vm.showSignin);
-      console.log(vm.showSignup);
+      // console.log(vm.showSignin);
+      // console.log(vm.showSignup);
     }
 
     vm.signin = function() {
       LandingService.getUser(vm.user)
-        .then(function(){
-            $state.go('tab.goals')
-        })
+        .then(function(response){
+          console.log(response.id_token);
+          store.set('jwt', response.id_token)
+          $state.go('tab.goals')
+        }), function(response){
+            alert(response.data)
+        }
 
     }
 
     vm.signup = function() {
-      vm.newUser = {
+      vm.newUser =
+      {
         username: vm.newUser.username,
         email: vm.newUser.email,
         password: vm.newUser.password
       }
-      LandingService.createNewUser(vm.newUser)
-        .then(function(){
-          console.log('newUser');
-          // $state.go('tab.goals')
-        })
-
+      let user = vm.newUser
+      LandingService.createNewUser(user)
+        .then(function(response){
+          console.log(response.id_token);
+          store.set('jwt', response.id_token)
+          $state.go('tab.goals')
+        }), function(response){
+            alert(response.data)
+        }
     }
   })
 

@@ -8,21 +8,19 @@
 
       <div class="space-top col text-center">
         <button class="button button-clear button-calm" ng-click="$ctrl.showSignin = !$ctrl.showSignin">
-          existing user signin
+          login
         </button>
         <button class="button button-clear button-calm" ng-click="$ctrl.showSignup = !$ctrl.showSignup">
-          new user signup
+          register
         </button>
       </div>
 
       <form novalidate ng-submit="$ctrl.signin()" ng-if="$ctrl.showSignin === true">
         <label class="item item-input">
-          <!-- <div class="input-label">Email</div> -->
           <input type="email" placeholder="Email" ng-model="$ctrl.user.email" required>
         </label>
 
         <label class="item item-input">
-          <!-- <span class="input-label ">Password</span> -->
           <input ng-model="$ctrl.user.password" type="password" placeholder="Password" required>
         </label>
         <button ui-sref="tab.goals" class="button button-full green-accent ">Signin</button>
@@ -31,16 +29,13 @@
 
       <form novalidate ng-submit="$ctrl.signup()" ng-if="$ctrl.showSignup === true">
         <label class="item item-input">
-          <!-- <div class="input-label">Email</div> -->
           <input type="text" placeholder="Username" ng-model="$ctrl.newUser.username" required>
         </label>
         <label class="item item-input">
-          <!-- <div class="input-label">Email</div> -->
           <input type="email" placeholder="Email" ng-model="$ctrl.newUser.email" required>
         </label>
 
         <label class="item item-input">
-          <!-- <span class="input-label ">Password</span> -->
           <input type="password" placeholder="Password" ng-model="$ctrl.newUser.password" required>
         </label>
         <button class="button button-full green-accent">Signup</button>
