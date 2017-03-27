@@ -23,8 +23,9 @@
         <label class="item item-input">
           <input ng-model="$ctrl.user.password" type="password" placeholder="Password" required>
         </label>
-        <button ui-sref="tab.goals" class="button button-full green-accent ">Signin</button>
+        <button  class="button button-full green-accent ">Signin</button>
       </form>
+      <!-- ui-sref="tab.goals" -->
 
 
       <form novalidate ng-submit="$ctrl.signup()" ng-if="$ctrl.showSignup === true">

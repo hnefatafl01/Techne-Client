@@ -19,7 +19,7 @@
           })
       }
 
-      this.getUser = function(user) {
+      this.login = function(user) {
         return $http.post(`${SERVER_URL}/auth/signin`, user)
           .then(function(response){
             console.log(response.data);

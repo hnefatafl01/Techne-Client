@@ -4,11 +4,9 @@
   angular.module("app")
     .config(config);
 
-  // Learn more here: https://github.com/angular-ui/ui-router
-
-
   function config($stateProvider, $urlRouterProvider, $ionicConfigProvider,$httpProvider, jwtInterceptorProvider,jwtOptionsProvider) {
   $ionicConfigProvider.views.maxCache(0);
+  $urlRouterProvider.otherwise('/');
 
   jwtOptionsProvider.config({ whiteListedDomains: ['http://192.168.0.5:8100/'] });
 
@@ -17,7 +15,17 @@
   }
 
   $httpProvider.interceptors.push('jwtInterceptor')
-
+  .run(function($state, store){
+    $rootScope.$on('stateChangeStart', function(event, to){
+      console.log(to.data);
+      if(to.data && to.data.requiresLogin) {
+        if(!store.get('jwt')) {
+          event.preventDefault();
+          $state.go('landing')
+        }
+      }
+    })
+  })
   $stateProvider
   // setup an abstract state for the tabs directive
   .state('landing', {
@@ -89,9 +97,6 @@
       }
     }
   });
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
   };
 
 }());

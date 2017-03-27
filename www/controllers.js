@@ -14,7 +14,7 @@
     }
 
     vm.signin = function() {
-      LandingService.getUser(vm.user)
+      LandingService.login(vm.user)
         .then(function(response){
           console.log(response.id_token);
           store.set('jwt', response.id_token)
