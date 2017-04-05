@@ -2,12 +2,23 @@
   'use strict';
 
   angular.module("app")
-    .config(config);
+    .config(config)
+    .run(function($state, store, $rootScope){
+      $rootScope.$on('$stateChangeStart', function(event, to){
+        console.log(to.data);
+        if(to.data && to.data.requiresLogin) {
+          if(!store.get('jwt')) {
+            event.preventDefault();
+            $state.go('landing')
+          }
+        }
+      })
+    })
 
-  function config($stateProvider, $urlRouterProvider, $ionicConfigProvider,$httpProvider, jwtInterceptorProvider,jwtOptionsProvider) {
+  function config($stateProvider, $urlRouterProvider, $ionicConfigProvider,$httpProvider, jwtInterceptorProvider, jwtOptionsProvider) {
+
   $ionicConfigProvider.views.maxCache(0);
   $urlRouterProvider.otherwise('/');
-
   jwtOptionsProvider.config({ whiteListedDomains: ['http://192.168.0.5:8100/'] });
 
   jwtInterceptorProvider.tokenGetter = function(store) {
@@ -15,19 +26,8 @@
   }
 
   $httpProvider.interceptors.push('jwtInterceptor')
-  .run(function($state, store){
-    $rootScope.$on('stateChangeStart', function(event, to){
-      console.log(to.data);
-      if(to.data && to.data.requiresLogin) {
-        if(!store.get('jwt')) {
-          event.preventDefault();
-          $state.go('landing')
-        }
-      }
-    })
-  })
+
   $stateProvider
-  // setup an abstract state for the tabs directive
   .state('landing', {
     url: '/',
     templateUrl: 'templates/landing.html',
@@ -37,7 +37,10 @@
   .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    data: {
+      requiresLogin: true
+    }
   })
 
   //Goals//

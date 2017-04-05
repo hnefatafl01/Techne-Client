@@ -44,11 +44,18 @@
     }
   })
 
-  .controller('GoalCtrl', function($state, GoalService, ChartFactory, SessionService){
+  .controller('GoalCtrl', function($state, GoalService, ChartFactory, SessionService, store, jwtHelper){
     const vm = this;
+
+    vm.jwt = store.get('jwt')
+    vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
+    console.log(vm.jwt);
+    console.log(vm.decodedJwt);
+
 
     vm.$onInit = function() {
       ////TODO: modal.show() to open modal with click etc.
+
 
       GoalService.getGoals()
         .then(function(result){
