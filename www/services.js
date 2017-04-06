@@ -26,14 +26,12 @@
             return response.data;
           })
       }
-
     }
 //sessionService
     function sessionService($http, ApiEndpoint){
       let SERVER_URL = ApiEndpoint.url;
-
-      this.getSessions = function() {
-        return $http.get(`${SERVER_URL}/sessions`)
+      this.getSessions = function(id) {
+        return $http.get(`${SERVER_URL}/users/${id}/sessions`)
           .then(function(result){
             return result.data;
           })
@@ -92,8 +90,8 @@
     function goalService($http, ApiEndpoint) {
       let SERVER_URL = ApiEndpoint.url;
       // console.log('services module');
-      this.getGoals = function() {
-        return $http.get(`${SERVER_URL}/goals`).then(function(result) {
+      this.getGoals = function(id) {
+        return $http.get(`${SERVER_URL}/user/${id}/goals`).then(function(result) {
           // console.log('get goals');
           // console.log(result.data);
           return result.data;

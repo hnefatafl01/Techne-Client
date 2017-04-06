@@ -35,7 +35,7 @@
       let user = vm.newUser
       LandingService.createNewUser(user)
         .then(function(response){
-          console.log(response.id_token);
+          // console.log(response.id_token);
           store.set('jwt', response.id_token)
           $state.go('tab.goals')
         }), function(response){
@@ -47,17 +47,18 @@
   .controller('GoalCtrl', function($state, GoalService, ChartFactory, SessionService, store, jwtHelper){
     const vm = this;
 
-    vm.jwt = store.get('jwt')
-    vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
-    console.log(vm.jwt);
-    console.log(vm.decodedJwt);
+
 
 
     vm.$onInit = function() {
       ////TODO: modal.show() to open modal with click etc.
+      vm.jwt = store.get('jwt')
+      vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
+      // console.log(vm.decodedJwt);
+      let userId = vm.decodedJwt.user.id;
+      console.log(userId);
 
-
-      GoalService.getGoals()
+      GoalService.getGoals(userId)
         .then(function(result){
           vm.goals = result.goals;
         })
@@ -66,7 +67,8 @@
       // vm.data = ChartFactory.data;
 
 
-      SessionService.getSessions()
+
+      SessionService.getSessions(userId)
         .then((result) => {
           var sessions = result.sessions;
           // console.log(sessions);
@@ -110,12 +112,6 @@
           ];
           console.log(vm.data);
         })
-
-
-
-
-
-
         //filter for exercise name to match with goal
           //var name = 'string1 etc'
           // var obj = array.filter(function ( obj ) {
@@ -167,6 +163,11 @@
     //
     //.on('$ionicView.enter', function(e) {
     //});
+    // vm.jwt = store.get('jwt')
+    // vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
+    // console.log(vm.jwt);
+    // console.log(vm.decodedJwt);
+
     vm.$onInit = function() {
       SessionService.getSessions()
         .then(function(result){
@@ -189,8 +190,14 @@
   .controller('SessionDetailCtrl', function(SessionService, $state, $stateParams, ExerciseService) {
     const vm = this;
 
+    // vm.jwt = store.get('jwt')
+    // vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
+    // console.log(vm.jwt);
+    // console.log(vm.decodedJwt);
+
     vm.$onInit = function(event, viewData) {
       let sessionId = $stateParams.sessionId;
+      console.log(sessionId);
 
       SessionService.getSessionWithExercises(sessionId)
         .then((result) => {
