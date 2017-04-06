@@ -47,19 +47,19 @@
   .controller('GoalCtrl', function($state, GoalService, ChartFactory, SessionService, store, jwtHelper){
     const vm = this;
 
-
-
+    vm.jwt = store.get('jwt')
+    vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
 
     vm.$onInit = function() {
       ////TODO: modal.show() to open modal with click etc.
-      vm.jwt = store.get('jwt')
-      vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
-      // console.log(vm.decodedJwt);
+
+      console.log(vm.decodedJwt);
       let userId = vm.decodedJwt.user.id;
       console.log(userId);
 
       GoalService.getGoals(userId)
         .then(function(result){
+          console.log(result.goals);
           vm.goals = result.goals;
         })
 
@@ -154,7 +154,7 @@
     }
   })
 
-  .controller('SessionCtrl', function($state, $stateParams, SessionService) {
+  .controller('SessionCtrl', function($state, $stateParams, SessionService, store, jwtHelper) {
     const vm = this;
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -163,8 +163,8 @@
     //
     //.on('$ionicView.enter', function(e) {
     //});
-    // vm.jwt = store.get('jwt')
-    // vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
+    vm.jwt = store.get('jwt')
+    vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
     // console.log(vm.jwt);
     // console.log(vm.decodedJwt);
 

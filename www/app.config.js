@@ -5,8 +5,10 @@
     .config(config)
     .run(function($state, store, $rootScope){
       $rootScope.$on('$stateChangeStart', function(event, to){
-        console.log(to.data);
+        // console.log(to);
+        // console.log(to.data);
         if(to.data && to.data.requiresLogin) {
+          // console.log(store.get('jwt'));
           if(!store.get('jwt')) {
             event.preventDefault();
             $state.go('landing')
@@ -19,11 +21,14 @@
 
   $ionicConfigProvider.views.maxCache(0);
   $urlRouterProvider.otherwise('/');
-  jwtOptionsProvider.config({ whiteListedDomains: ['http://192.168.0.5:8100/'] });
+  jwtOptionsProvider.config({
+    whiteListedDomains: ['128.177.113.102','10.6.66.4','localhost'],
+    tokenGetter: function(store) {
+      return store.get('jwt')
+    }
+   });//http://192.168.0.5:8100/
 
-  jwtInterceptorProvider.tokenGetter = function(store) {
-    return store.get('jwt')
-  }
+
 
   $httpProvider.interceptors.push('jwtInterceptor')
 
@@ -31,7 +36,10 @@
   .state('landing', {
     url: '/',
     templateUrl: 'templates/landing.html',
-    controller: 'LandingCtrl'
+    controller: 'LandingCtrl',
+    data: {
+      requiresLogin: false
+    }
   })
 
   .state('tab', {

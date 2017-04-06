@@ -22,7 +22,7 @@
       this.login = function(user) {
         return $http.post(`${SERVER_URL}/auth/signin`, user)
           .then(function(response){
-            console.log(response.data);
+            // console.log(response.data);
             return response.data;
           })
       }
@@ -91,9 +91,9 @@
       let SERVER_URL = ApiEndpoint.url;
       // console.log('services module');
       this.getGoals = function(id) {
-        return $http.get(`${SERVER_URL}/user/${id}/goals`).then(function(result) {
-          // console.log('get goals');
-          // console.log(result.data);
+        return $http.get(`${SERVER_URL}/users/${id}/goals`).then(function(result) {
+          console.log('get goals');
+          console.log(result.data);
           return result.data;
         })
       }
