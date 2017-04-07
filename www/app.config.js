@@ -22,13 +22,11 @@
   $ionicConfigProvider.views.maxCache(0);
   $urlRouterProvider.otherwise('/');
   jwtOptionsProvider.config({
-    whiteListedDomains: ['128.177.113.102','10.6.66.4','localhost'],
+    whiteListedDomains: ['localhost'],
     tokenGetter: function(store) {
       return store.get('jwt')
     }
-   });//http://192.168.0.5:8100/
-
-
+   });
 
   $httpProvider.interceptors.push('jwtInterceptor')
 

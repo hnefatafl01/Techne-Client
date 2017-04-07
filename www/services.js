@@ -14,7 +14,7 @@
       this.createNewUser = function(user) {
         return $http.post(`${SERVER_URL}/auth/signup`, user)
           .then(function(response){
-            console.log(response);
+            console.log(response.data);
             return response.data
           })
       }
@@ -32,13 +32,14 @@
       let SERVER_URL = ApiEndpoint.url;
       this.getSessions = function(id) {
         return $http.get(`${SERVER_URL}/users/${id}/sessions`)
-          .then(function(result){
-            return result.data;
+          .then(function(Obj){
+            // console.log(Obj.data.result[0]);
+            return Obj.data.result[0];
           })
       }
 
       this.getSession = function(id) {
-        return $http.get(`${SERVER_URL}/sessions/${id}`)
+        return $http.get(`${SERVER_URL}/users/${id}/sessions/${id}`)
           .then(function(result){
             return result.data;
           })
@@ -52,7 +53,7 @@
       }
 
       this.getSessionWithExercises = function(id) {
-        return $http.get(`${SERVER_URL}/sessions/${id}/exercises`)
+        return $http.get(`${SERVER_URL}/users/${id}/sessions/${id}/exercises`)
           .then(function(result) {
             return result.data;
           })

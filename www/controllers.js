@@ -53,50 +53,52 @@
     vm.$onInit = function() {
       ////TODO: modal.show() to open modal with click etc.
 
-      console.log(vm.decodedJwt);
+      // console.log(vm.decodedJwt);
       let userId = vm.decodedJwt.user.id;
-      console.log(userId);
+      // console.log(userId);
 
       GoalService.getGoals(userId)
         .then(function(result){
-          console.log(result.goals);
-          vm.goals = result.goals;
+          console.log(result.UserGoals[0].goals);
+          vm.goals = result.UserGoals[0].goals;
         })
 
       vm.options = ChartFactory.options;
       // vm.data = ChartFactory.data;
 
-
-
       SessionService.getSessions(userId)
         .then((result) => {
           var sessions = result.sessions;
-          // console.log(sessions);
+          console.log(sessions);
           var dateF,vol,set,load,repetitions
 
           var formattedSessions = sessions.map((session,index) => {
             dateF = Date.parse(session.date)
-            var exerciseVolumes = session.exercises.map((exercise,index) => {
-              set = exercise.sets
-              load = exercise.load
-              repetitions = exercise.repetitions
-              vol = volumeFn(set,repetitions,load);
-              return vol;
-            })
+            console.log(dateF);
 
-            var total = exerciseVolumes.reduce(function(sum, current){
-               return sum + current;
-             }, 0);
+            // var exerciseVolumes = session.exercises.map((exercise,index) => {
+            //   set = exercise.sets
+            //   load = exercise.load
+            //   repetitions = exercise.repetitions
+            //   vol = volumeFn(set,repetitions,load);
+            //   return vol;
+            // })
+
+            // var total = exerciseVolumes.reduce(function(sum, current){
+            //    return sum + current;
+            //  }, 0);
+
             //  console.log(total);
             return {
-              date: dateF,
-              volumeF: total
+              date: dateF
+              // ,
+              // volumeF: total
             }
           })
 
           function volumeFn(s,r,l) { var vol = s * r * l; return vol; }
           // console.log(formattedSessions);
-          return formattedSessions.map((obj)=>{
+          return formattedSessions.map((obj) => {
             return [obj.date, obj.volumeF]
           })
 
