@@ -14,7 +14,7 @@
       this.createNewUser = function(user) {
         return $http.post(`${SERVER_URL}/auth/signup`, user)
           .then(function(response){
-            console.log(response.data);
+            // console.log(response.data);
             return response.data
           })
       }
@@ -31,10 +31,11 @@
     function sessionService($http, ApiEndpoint){
       let SERVER_URL = ApiEndpoint.url;
       this.getSessions = function(id) {
+        // console.log('id', id);
         return $http.get(`${SERVER_URL}/users/${id}/sessions`)
           .then(function(Obj){
-            // console.log(Obj.data.result[0]);
-            return Obj.data.result[0];
+            // console.log('get sessions', Obj.data.sessions);
+            return Obj.data;
           })
       }
 
@@ -45,8 +46,10 @@
           })
       }
 
-      this.postSession = function(session) {
-        return $http.post(`${SERVER_URL}/sessions`, session)
+      this.postSession = function(id,session) {
+        // console.log(id);
+        // console.log(session);
+        return $http.post(`${SERVER_URL}/users/${id}/sessions`, session)
           .then(function(result){
             return result.data;
           })
@@ -63,7 +66,7 @@
         // console.log(session);
         return $http.post(`${SERVER_URL}/sessions/${id}/exercises`, exercise)
           .then(function(result) {
-            console.log('posting session.exercises');
+            // console.log('posting session.exercises');
             // console.log(result.data);
             return result.data;
           })
@@ -72,17 +75,17 @@
       this.updateSession = function(id, session) {
         return $http.put(`${SERVER_URL}/sessions/edit/${id}`, session)
           .then(function(result) {
-            console.log(result.data);
+            // console.log(result.data);
             return result.data;
           })
       }
 
       this.deleteExerciseFromSession = function(exerciseId) {
-        console.log('hi');
+        // console.log('hi');
       // let id = session.id
         return $http.delete(`${SERVER_URL}/exercises/delete/${exerciseId}`)
           .then((result) => {
-            console.log('deleted');
+            // console.log('deleted');
             return result;
           })
       }
@@ -99,8 +102,10 @@
         })
       }
 
-      this.postGoal = function(newGoal) {
-        return $http.post(`${SERVER_URL}/goals`, newGoal).then(function(result) {
+      this.postGoal = function(id, newGoal) {
+        // console.log(newGoal);
+        return $http.post(`${SERVER_URL}/users/${id}/goals`, newGoal).then(function(result) {
+          console.log(result);
           return result.data;
         })
       }
