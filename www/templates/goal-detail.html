@@ -4,12 +4,12 @@
       <form ng-submit="$ctrl.createGoal()">
         <label class="item item-input">
           <div class="input-label">Exercise</div>
-          <input type="text" placeholder="Exercise Name" ng-model="$ctrl.goal.exercise">
+          <input type="text" placeholder="Exercise Name" ng-model="$ctrl.goal.exercise_name">
         </label>
 
         <label class="item item-input">
           <div class="input-label">Goal Reps</div>
-            <input ng-model="$ctrl.goal.repetitions" type="number" min="1"
+            <input ng-model="$ctrl.goal.reps" type="number" min="1"
                    max="300" step="1">
         </label>
 
@@ -22,7 +22,7 @@
 
         <label class="item item-input">
           <span class="input-label ">Goal Finish Date</span>
-          <input ng-model="$ctrl.goal.goalFinishDate" class="dateInput" type="date">
+          <input ng-model="$ctrl.goal.finish_date" class="dateInput" type="date">
         </label>
         <button class="button button-full button-positive">Add New Goal</button>
       </form>

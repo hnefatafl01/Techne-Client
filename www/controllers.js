@@ -48,6 +48,7 @@
     const vm = this;
 
     vm.jwt = store.get('jwt')
+    console.log(vm.jwt);
     vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
 
     vm.$onInit = function() {

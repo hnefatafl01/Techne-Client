@@ -103,7 +103,7 @@
       }
 
       this.postGoal = function(id, newGoal) {
-        // console.log(newGoal);
+        console.log(newGoal);
         return $http.post(`${SERVER_URL}/users/${id}/goals`, newGoal).then(function(result) {
           console.log(result);
           return result.data;
