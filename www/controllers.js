@@ -183,28 +183,28 @@
       vm.session.date = new Date();
       let session = vm.session;
       let userId = vm.decodedJwt.user.id;
-      console.log(session);
+      // console.log(session);
       SessionService.postSession(userId, session)
         .then(function(result){
-           console.log(result);
+          //  console.log(result);
            return result.session;
+        }).then(function(){
+          $state.transitionTo('tab.session', null, {reload: true, notify:true});
         })
-        $state.reload();
+
+        // $state.reload();
     }
   })
 
-  .controller('SessionDetailCtrl', function(SessionService, $state, $stateParams, ExerciseService) {
+  .controller('SessionDetailCtrl', function(SessionService, $state, $stateParams, ExerciseService,store,jwtHelper) {
     const vm = this;
-    // vm.jwt = store.get('jwt')
-    // vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
-    // console.log(vm.jwt);
-    // console.log(vm.decodedJwt);
+    vm.jwt = store.get('jwt')
+    vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
 
     vm.$onInit = function(event, viewData) {
       let sessionId = $stateParams.sessionId;
-      console.log('sessionId',sessionId);
-
-      SessionService.getSessionWithExercises(sessionId)
+      let userId = vm.decodedJwt.user.id;
+      SessionService.getSessionWithExercises(userId, sessionId)
         .then((result) => {
           vm.session = result.session;
           return vm.session;
@@ -214,8 +214,11 @@
     vm.createExercise = function(){
       let sessionId = $stateParams.sessionId;
       let exercise = vm.session.exercise;
+      // console.log(sessionId);
+      // console.log(exercise);
       SessionService.addExercisesToSession(sessionId, exercise)
         .then(function(result){
+          // console.log(result);
           vm.session = result;
           return vm.session;
         })
@@ -241,13 +244,12 @@
       let id = vm.session.exercises[index].id;
       SessionService.deleteExerciseFromSession(id)
         .then((result) => {
-          console.log(result.data);
+          console.log('deleted',result.data);
           return result;
         }).then(function(){
             $state.reload();
         })
     }
-
   })
 
   .controller('AccountCtrl', function() {

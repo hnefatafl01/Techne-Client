@@ -55,19 +55,21 @@
           })
       }
 
-      this.getSessionWithExercises = function(id) {
-        return $http.get(`${SERVER_URL}/users/${id}/sessions/${id}/exercises`)
+      this.getSessionWithExercises = function(uid,sid) {
+        return $http.get(`${SERVER_URL}/users/${uid}/sessions/${sid}/exercises`)
           .then(function(result) {
+            console.log(result.data);
             return result.data;
           })
       }
 
       this.addExercisesToSession = function(id, exercise) {
-        // console.log(session);
-        return $http.post(`${SERVER_URL}/sessions/${id}/exercises`, exercise)
+        // console.log('service id',id);
+        // console.log('service exercise', exercise);
+        return $http.post(`${SERVER_URL}/users/${id}/sessions/${id}/exercises`, exercise)
           .then(function(result) {
             // console.log('posting session.exercises');
-            // console.log(result.data);
+            console.log(result);
             return result.data;
           })
       }
@@ -119,6 +121,7 @@
         })
       }
       this.postExercise = function(exercise) {
+        console.log(SERVER_URL);
         return $http.post(`${SERVER_URL}/exercises`, exercise).then(function(result) {
           console.log('post exercise', result);
 
