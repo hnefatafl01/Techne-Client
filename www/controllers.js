@@ -9,20 +9,16 @@
     vm.$onInit = function() {
       vm.showSignup = false;
       vm.showSignin = false;
-      // console.log(vm.showSignin);
-      // console.log(vm.showSignup);
     }
 
     vm.signin = function() {
       LandingService.login(vm.user)
         .then(function(response){
-          // console.log(response.id_token);
           store.set('jwt', response.id_token)
           $state.go('tab.goals')
         }), function(response){
             alert(response.data)
         }
-
     }
 
     vm.signup = function() {
@@ -35,7 +31,6 @@
       let user = vm.newUser
       LandingService.createNewUser(user)
         .then(function(response){
-          // console.log(response.id_token);
           store.set('jwt', response.id_token)
           $state.go('tab.goals')
         }), function(response){
@@ -46,21 +41,13 @@
 
   .controller('GoalCtrl', function($state, GoalService, ChartFactory, SessionService, store, jwtHelper){
     const vm = this;
-
     vm.jwt = store.get('jwt')
-    console.log(vm.jwt);
     vm.decodedJwt = vm.jwt && jwtHelper.decodeToken(vm.jwt);
-
     vm.$onInit = function() {
-      ////TODO: modal.show() to open modal with click etc.
-
-      // console.log(vm.decodedJwt);
       let userId = vm.decodedJwt.user.id;
-      // console.log(userId);
 
       GoalService.getGoals(userId)
         .then(function(result){
-          // console.log(result.UserGoals[0].goals);
           vm.goals = result.UserGoals[0].goals;
         })
 
@@ -72,7 +59,6 @@
           var sessions = result.sessions;
           var dateF,vol,set,load,repetitions
           var formattedSessions = sessions.map((session,index) => {
-            // console.log(session);
             dateF = Date.parse(session.date)
             // console.log(dateF);
 
@@ -88,7 +74,7 @@
                return sum + current;
              }, 0);
 
-             console.log(total);
+            //  console.log(total);
             return {
               date: dateF
               ,
@@ -97,7 +83,7 @@
           })
 
           function volumeFn(s,r,l) { var vol = s * r * l; return vol; }
-          console.log(formattedSessions);
+          // console.log(formattedSessions);
           return formattedSessions.map((obj) => {
             return [obj.date, obj.volumeF]
           })
@@ -111,13 +97,8 @@
               "values" : session
             }
           ];
-          console.log(vm.data);
+          // console.log(vm.data);
         })
-        //filter for exercise name to match with goal
-          //var name = 'string1 etc'
-          // var obj = array.filter(function ( obj ) {
-          // return obj.name === name;
-// })[0];
     }
 
     vm.addGoal = function() {
@@ -125,11 +106,11 @@
     }
 
     vm.displayGoalProgress = function() {
-      console.log("show me this goals status");
+      // console.log("show me this goals status");
     }
 
     vm.styleStatus = function() {
-      console.log('removeClass');
+      // console.log('removeClass');
       //fix hover
       // angular.element( document.querySelector( '#goalStatus' ) ).removeClass("ion-ios-pulse");
       // var myEl = angular.element( document.querySelector( '#goalStatus' ) )
@@ -147,7 +128,7 @@
       let userId = vm.decodedJwt.user.id;
       GoalService.postGoal(userId, vm.goal)
       .then(function(result){
-        console.log('goal created', result);
+        // console.log('goal created', result);
 
         // $state.go('tab.goals');
         $state.transitionTo('tab.goals', null, {reload: true, notify:true});
@@ -183,16 +164,12 @@
       vm.session.date = new Date();
       let session = vm.session;
       let userId = vm.decodedJwt.user.id;
-      // console.log(session);
       SessionService.postSession(userId, session)
         .then(function(result){
-          //  console.log(result);
            return result.session;
         }).then(function(){
           $state.transitionTo('tab.session', null, {reload: true, notify:true});
         })
-
-        // $state.reload();
     }
   })
 
@@ -214,11 +191,10 @@
     vm.createExercise = function(){
       let sessionId = $stateParams.sessionId;
       let exercise = vm.session.exercise;
-      // console.log(sessionId);
-      // console.log(exercise);
-      SessionService.addExercisesToSession(sessionId, exercise)
+      let userId = vm.decodedJwt.user.id;
+
+      SessionService.addExercisesToSession(userId, sessionId, exercise)
         .then(function(result){
-          // console.log(result);
           vm.session = result;
           return vm.session;
         })
@@ -231,7 +207,6 @@
     vm.submitSession = function() {
       let session = vm.session;
       let id = session.id;
-      // console.log(session.id);
       SessionService.updateSession(id, session)
         .then(function(session){
           vm.session = session;
@@ -241,10 +216,12 @@
     }
 
     vm.deleteExercise = function(index){
-      let id = vm.session.exercises[index].id;
-      SessionService.deleteExerciseFromSession(id)
+      let sessionId = vm.session.id;
+      let userId = vm.decodedJwt.user.id;
+      let eid = vm.session.exercises[index].id;
+      SessionService.deleteExerciseFromSession(userId, sessionId, eid)
         .then((result) => {
-          console.log('deleted',result.data);
+          console.log('deleted',result);
           return result;
         }).then(function(){
             $state.reload();

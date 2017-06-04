@@ -63,13 +63,11 @@
           })
       }
 
-      this.addExercisesToSession = function(id, exercise) {
+      this.addExercisesToSession = function(uid, sid, exercise) {
         // console.log('service id',id);
         // console.log('service exercise', exercise);
-        return $http.post(`${SERVER_URL}/users/${id}/sessions/${id}/exercises`, exercise)
+        return $http.post(`${SERVER_URL}/users/${uid}/sessions/${sid}/exercises`, exercise)
           .then(function(result) {
-            // console.log('posting session.exercises');
-            console.log(result);
             return result.data;
           })
       }
@@ -82,12 +80,13 @@
           })
       }
 
-      this.deleteExerciseFromSession = function(exerciseId) {
-        // console.log('hi');
-      // let id = session.id
-        return $http.delete(`${SERVER_URL}/exercises/delete/${exerciseId}`)
+      this.deleteExerciseFromSession = function(uid, sid, exerciseId) {
+        console.log(uid);
+        console.log(sid);
+        console.log(exerciseId);
+        return $http.delete(`${SERVER_URL}/users/${uid}/sessions/${sid}/exercises/${exerciseId}`)
           .then((result) => {
-            // console.log('deleted');
+            console.log('deleted');
             return result;
           })
       }
@@ -98,16 +97,16 @@
       // console.log('services module');
       this.getGoals = function(id) {
         return $http.get(`${SERVER_URL}/users/${id}/goals`).then(function(result) {
-          console.log('get goals');
-          console.log(result.data);
+          // console.log('get goals');
+          // console.log(result.data);
           return result.data;
         })
       }
 
       this.postGoal = function(id, newGoal) {
-        console.log(newGoal);
+        // console.log(newGoal);
         return $http.post(`${SERVER_URL}/users/${id}/goals`, newGoal).then(function(result) {
-          console.log(result);
+          // console.log(result);
           return result.data;
         })
       }
@@ -117,13 +116,13 @@
       let SERVER_URL = ApiEndpoint.url;
       this.getExercises = function() {
         return $http.get(`${SERVER_URL}/exercises`).then(function(result) {
-          console.log('get exercises');
+          // console.log('get exercises');
         })
       }
       this.postExercise = function(exercise) {
-        console.log(SERVER_URL);
+        // console.log(SERVER_URL);
         return $http.post(`${SERVER_URL}/exercises`, exercise).then(function(result) {
-          console.log('post exercise', result);
+          // console.log('post exercise', result);
 
         })
       }
